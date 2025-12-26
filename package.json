@@ -15,7 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gsap": "^3.12.5"
+    "gsap": "^3.14.2"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

@@ -99,7 +99,7 @@ Then open your browser and navigate to `http://localhost:8080`
 
 ### Without npm
 
-You can also open `index.html` directly in your browser since GSAP is loaded from CDN.
+You can also open `index.html` directly in your browser since GSAP is included locally in the `lib/` directory.
 
 ## Pages
 
@@ -110,8 +110,8 @@ You can also open `index.html` directly in your browser since GSAP is loaded fro
 
 ## Technologies Used
 
-- **GSAP 3.12.5**: Core animation library
-- **ScrollTrigger**: GSAP plugin for scroll-based animations
+- **GSAP**: Core animation library (included in lib/ directory)
+- **ScrollTrigger**: GSAP plugin for scroll-based animations (included in lib/ directory)
 - **Vanilla JavaScript**: No framework dependencies
 - **CSS3**: Modern styling with custom properties
 - **HTML5**: Semantic markup
