@@ -1,0 +1,23 @@
+{
+  "name": "gsap-project",
+  "version": "1.0.0",
+  "description": "GSAP Website with Multiple Animations",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server . -p 8080",
+    "start": "npx http-server . -p 8080"
+  },
+  "keywords": [
+    "gsap",
+    "animation",
+    "scrolltrigger"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "gsap": "^3.14.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
