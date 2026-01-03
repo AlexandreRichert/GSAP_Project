@@ -22,6 +22,103 @@ body {
   overflow-x: hidden;
 }
 
+/* Navigation */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(109, 47, 47, 0.8) 0%, rgba(102, 17, 17, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.main-nav .nav-logo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-nav .nav-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.main-nav .nav-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: 1px;
+}
+.main-nav .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.main-nav .nav-links li {
+  position: relative;
+}
+
+.main-nav .nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.main-nav .nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), rgba(236, 229, 68, 0.5));
+  transition: width 0.3s ease;
+}
+
+.main-nav .nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.main-nav .nav-links a:hover::after {
+  width: 100%;
+}
+
+.main-nav .nav-links a.active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.main-nav .nav-links a.active::after {
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  box-shadow: 0 0 10px rgba(236, 229, 68, 0.5);
+}
+
+body {
+  padding-top: 70px;
+}
+
 /* Footer */
 .footer {
   padding: 3rem 2rem;
