@@ -3,55 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSAP Project - Gallery</title>
+    <title>GSAP Project - Pourquoi cette course ?</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <div class="preloader-content">
-            <div class="preloader-text">Loading</div>
-            <div class="preloader-progress">
-                <div class="preloader-progress-bar"></div>
-            </div>
-        </div>
     </div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor">
-        <div class="cursor-inner"></div>
-    </div>
-
-    <!-- Page Transition Overlay -->
-    <div class="page-transition"></div>
 
     <!-- Navigation -->
     <nav class="main-nav">
-        <div class="nav-logo">GSAP</div>
-        <ul class="nav-links">
-            <li><a href="../index.html" class="page-link">Home</a></li>
-            <li><a href="page1.html" class="page-link active">Gallery</a></li>
-            <li><a href="page2.html" class="page-link">Horizontal</a></li>
-            <li><a href="page3.html" class="page-link">Slider</a></li>
-        </ul>
+        <a href="../index.html" class="nav-logo page-link">
+            <img src="../assets/test.webp" alt="GSAP Logo">
+        </a>
+        
+        <button class="burger-menu" aria-label="Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-    </section>
+    <!-- Menu déroulant -->
+    <div class="menu-overlay"></div>
+    <div class="dropdown-menu">
+        <div class="dropdown-content">
+            <a href="page1.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+            <a href="page1.html" class="dropdown-link page-link">S'inscrire</a>
+            <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
+            <a href="page1.html" class="dropdown-link page-link">Les distances</a>
+            <a href="page2.html" class="dropdown-link page-link">After party</a>
+            <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
+            <a href="page4.html" class="dropdown-link page-link">Photos</a>
+        </div>
+    </div>
 
-    <!-- Scroll Animation Section -->
-    <section class="scroll-section">
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
-
-    <!-- Load GSAP from local files -->
-    <script src="../lib/gsap.min.js"></script>
-    <script src="../lib/ScrollTrigger.min.js"></script>
     
     <!-- Load Animation Modules -->
     <script src="../js/animations/preloader.js"></script>
