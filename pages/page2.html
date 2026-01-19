@@ -11,17 +11,33 @@
     <div class="preloader">
     </div>
 
-  <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="main-nav">
-        <div class="nav-logo">GSAP</div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="page-link ">Home</a></li>
-            <li><a href="pages/page1.html" class="page-link">Pourquoi cette course ?</a></li>
-            <li><a href="pages/page2.html" class="page-link active">After party</a></li>
-            <li><a href="pages/page3.html" class="page-link">Bénévoles</a></li>
-            <li><a href="pages/page4.html" class="page-link">Photos</a></li>
-        </ul>
+        <a href="../index.html" class="nav-logo page-link">
+            <img src="../assets/test.webp" alt="GSAP Logo">
+        </a>
+        
+        <button class="burger-menu" aria-label="Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
     </nav>
+
+    <!-- Menu déroulant -->
+    <div class="menu-overlay"></div>
+    <div class="dropdown-menu">
+        <div class="dropdown-content">
+            <a href="page1.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+            <a href="page1.html" class="dropdown-link page-link">S'inscrire</a>
+            <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
+            <a href="page1.html" class="dropdown-link page-link">Les distances</a>
+            <a href="page2.html" class="dropdown-link page-link">After party</a>
+            <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
+            <a href="page4.html" class="dropdown-link page-link">Photos</a>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="footer">

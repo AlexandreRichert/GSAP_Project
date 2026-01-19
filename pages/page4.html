@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GSAP Project - Gallery</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <div class="preloader"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <a href="../index.html" class="nav-logo page-link">
+        <img src="../assets/test.webp" alt="GSAP Logo" />
+      </a>
+
+      <button class="burger-menu" aria-label="Menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Menu déroulant -->
+    <div class="menu-overlay"></div>
+    <div class="dropdown-menu">
+      <div class="dropdown-content">
+        <a href="page1.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+        <a href="page1.html" class="dropdown-link page-link">S'inscrire</a>
+        <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
+        <a href="page1.html" class="dropdown-link page-link">Les distances</a>
+        <a href="page2.html" class="dropdown-link page-link">After party</a>
+        <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
+        <a href="page4.html" class="dropdown-link page-link">Photos</a>
+      </div>
     </div>
 
-  <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-logo">GSAP</div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="page-link">Home</a></li>
-            <li><a href="pages/page1.html" class="page-link">Pourquoi cette course ?</a></li>
-            <li><a href="pages/page2.html" class="page-link">After party</a></li>
-            <li><a href="pages/page3.html" class="page-link">Bénévoles</a></li>
-            <li><a href="pages/page4.html" class="page-link active">Photos</a></li>
-        </ul>
-    </nav>
-    
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 GSAP Project. All rights reserved.</p>
+      <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
-    
+
     <!-- Load Animation Modules -->
     <script src="../js/animations/preloader.js"></script>
     <script src="../js/animations/pageTransition.js"></script>
@@ -35,5 +49,5 @@
     <script src="../js/animations/scrollAnimation.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
-</body>
+  </body>
 </html>

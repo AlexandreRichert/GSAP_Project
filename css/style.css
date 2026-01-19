@@ -27,13 +27,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2rem 3rem;
+  padding: 1rem 2rem;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, rgba(109, 47, 47, 0.8) 0%, rgba(102, 17, 17, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(109, 47, 47, 0.95) 0%, rgba(102, 17, 17, 0.98) 100%);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
@@ -43,76 +43,149 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.main-nav .nav-logo:hover {
+  transform: scale(1.1);
 }
 
 .main-nav .nav-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: relative;
-  z-index: 1;
 }
 
-.main-nav .nav-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-color);
-  letter-spacing: 1px;
-}
-.main-nav .nav-links {
-  list-style: none;
+/* Bouton burger */
+.burger-menu {
   display: flex;
-  gap: 2rem;
-}
-
-.main-nav .nav-links li {
-  position: relative;
-}
-
-.main-nav .nav-links a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  display: inline-block;
-  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 35px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
   transition: all 0.3s ease;
 }
 
-.main-nav .nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-color), rgba(236, 229, 68, 0.5));
-  transition: width 0.3s ease;
+.burger-menu:hover {
+  transform: scale(1.1);
 }
 
-.main-nav .nav-links a:hover {
-  color: var(--accent-color);
-}
-
-.main-nav .nav-links a:hover::after {
-  width: 100%;
-}
-
-.main-nav .nav-links a.active {
-  color: var(--accent-color);
-  font-weight: 600;
-}
-
-.main-nav .nav-links a.active::after {
+.burger-line {
   width: 100%;
   height: 3px;
   background: var(--accent-color);
-  box-shadow: 0 0 10px rgba(236, 229, 68, 0.5);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(236, 229, 68, 0.3);
+}
+
+.burger-menu.active .burger-line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 350px;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(109, 47, 47, 0.98) 0%, rgba(102, 17, 17, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-menu.active {
+  right: 0;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 2rem 2rem;
+  gap: 1.5rem;
+}
+
+.dropdown-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 1.2rem 1.5rem;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(236, 229, 68, 0.2), transparent);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.dropdown-link:hover {
+  color: var(--accent-color);
+  border-left-color: var(--accent-color);
+  padding-left: 2rem;
+  transform: translateX(5px);
+}
+
+.dropdown-link:hover::before {
+  width: 100%;
+}
+
+.dropdown-link.active {
+  color: var(--accent-color);
+  border-left-color: var(--accent-color);
+  background: rgba(236, 229, 68, 0.1);
+  font-weight: 600;
+}
+
+/* Overlay pour fermer le menu */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 body {
