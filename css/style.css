@@ -32,7 +32,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.2rem 2rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -50,85 +50,13 @@ body {
   border-radius: 50%;
 }
 
-/* Hero Section */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: stretch;
-  overflow: hidden;
-  position: relative;
-  clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
-}
-
-.hero-image {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-content {
-  flex: 1;
-  background: var(--light-color);
-  display: flex;
-  align-items: center;
-  padding: 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -10%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, var(--light-color), transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 2;
-  max-width: 500px;
-}
-
-.hero-text h1 {
-  font-size: 3.5rem;
-  color: var(--dark-color);
-  margin-bottom: 2rem;
-  font-weight: 800;
-}
-
-.hero-text p {
-  font-size: 1.1rem;
-  color: var(--text-color);
-  line-height: 1.8;
-}
-
-/* Slider */
-.slider-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-
 .main-nav .nav-logo:hover {
   transform: scale(1.1);
 }
 
 .main-nav .nav-logo img {
-  width: 100%;
-  height: 100%;
+  width: 75%;
+  height: 75%;
   object-fit: cover;
 }
 
@@ -261,6 +189,59 @@ body {
 
 body {
   padding-top: 70px;
+}
+
+/* Slider */
+.slider-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      75deg,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(102, 17, 17, 0.5) 40%,
+      rgba(102, 17, 17, 0.8) 60%,
+      var(--background-color) 75%
+    ),
+    url('../assets/bordeaux.jpg') center / cover no-repeat;
+}
+
+.hero-content {
+  width: 45%;
+  padding: 1rem 10rem;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-weight: 800;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  line-height: 1.8;
 }
 
 /* Footer */
