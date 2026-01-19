@@ -1,42 +1,38 @@
-// main.js - Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all animation modules
-    if (typeof Preloader !== 'undefined') {
-        Preloader.init();
-    }
-    
-    if (typeof PageTransition !== 'undefined') {
-        PageTransition.init();
-    }
-    
-    if (typeof TextReveal !== 'undefined') {
-        TextReveal.init();
-    }
-    
-    if (typeof ScrollAnimation !== 'undefined') {
-        ScrollAnimation.init();
-    }
-    
-    if (typeof PinAnimation !== 'undefined') {
-        PinAnimation.init();
-    }
-    
-    if (typeof HorizontalScroll !== 'undefined') {
-        HorizontalScroll.init();
-    }
-    
-    if (typeof Slider !== 'undefined') {
-        Slider.init();
-    }
-    
-    if (typeof CustomCursor !== 'undefined') {
-        CustomCursor.init();
-    }
+  const burgerMenu = document.querySelector('.burger-menu')
+  const dropdownMenu = document.querySelector('.dropdown-menu')
+  const menuOverlay = document.querySelector('.menu-overlay')
+  const dropdownLinks = document.querySelectorAll('.dropdown-link')
 
-    // Refresh ScrollTrigger on window resize
-    if (typeof ScrollTrigger !== 'undefined') {
-        window.addEventListener('resize', () => {
-            ScrollTrigger.refresh();
-        });
+  // Toggle menu
+  function toggleMenu() {
+    burgerMenu.classList.toggle('active')
+    dropdownMenu.classList.toggle('active')
+    menuOverlay.classList.toggle('active')
+    document.body.style.overflow = dropdownMenu.classList.contains('active') ? 'hidden' : ''
+  }
+
+  // Fermer le menu
+  function closeMenu() {
+    burgerMenu.classList.remove('active')
+    dropdownMenu.classList.remove('active')
+    menuOverlay.classList.remove('active')
+    document.body.style.overflow = ''
+  }
+
+  // Event listeners
+  burgerMenu.addEventListener('click', toggleMenu)
+  menuOverlay.addEventListener('click', closeMenu)
+
+  // Fermer le menu au clic sur un lien
+  dropdownLinks.forEach((link) => {
+    link.addEventListener('click', closeMenu)
+  })
+
+  // Fermer avec Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dropdownMenu.classList.contains('active')) {
+      closeMenu()
     }
-});
+  })
+})
