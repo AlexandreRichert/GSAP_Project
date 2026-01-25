@@ -491,21 +491,34 @@ body::-webkit-scrollbar {
 .contexte .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
+  padding: 2rem 0;
+  background: none;
+  border-radius: 0;
 }
 .contexte-text h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
   color: var(--secondary-color);
+  line-height: 1.1;
 }
 .content p {
-  margin-bottom: 1rem;
-  line-height: 1.9;
-  font-size: 1.05rem;
+  margin-bottom: 3.2rem;
+  line-height: 1.5;
+  font-size: 2.1rem;
   color: var(--text-color);
+  font-weight: 700;
 }
+
+.split-text-wrapper {
+  overflow: hidden;
+}
+
+.split-text {
+  display: inline-block;
+  perspective: 1000;
+}
+
+/* Buttons */
 .actions {
   display: flex;
   gap: 1rem;
@@ -564,39 +577,38 @@ body::-webkit-scrollbar {
 }
 
 body.page-contexte {
-  background: linear-gradient(180deg, var(--primary-color), var(--light-color));
-  color: var(--secondary-color);
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 body.page-contexte .contexte .container {
-  background: linear-gradient(180deg, var(--light-color), var(--primary-color));
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  background: none;
+  box-shadow: none;
 }
 
 body.page-contexte .contexte-text h2 {
-  color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 body.page-contexte .content p {
-  color: var(--secondary-color);
+  color: var(--text-color);
 }
 
-/* Boutons adaptés à fond clair; n'utilisent pas --accent-color ni --dark-color */
 body.page-contexte .btn-primary {
-  background: var(--secondary-color);
-  color: var(--light-color);
+  background: var(--light-color);
+  color: var(--dark-color);
   box-shadow: 0 10px 28px rgba(109, 47, 47, 0.08);
 }
 
 body.page-contexte .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 20px 46px rgba(109, 47, 47, 0.12);
+  /* box-shadow: 0 20px 46px rgba(109, 47, 47, 0.12); */
 }
 
 body.page-contexte .btn-secondary {
   background: transparent;
-  color: var(--secondary-color);
-  border: 1px solid rgba(109, 47, 47, 0.12);
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
 }
 
 body.page-contexte .btn-secondary:hover {
