@@ -1,47 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GSAP Project - Home</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!-- Preloader -->
-    <div class="preloader">
-    </div>
+    <div class="preloader"></div>
 
     <!-- Navigation -->
     <nav class="main-nav">
-        <a href="index.html" class="nav-logo page-link">
-            <img src="assets/test.webp" alt="GSAP Logo">
-        </a>
-        
-        <button class="burger-menu" aria-label="Menu">
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
-        </button>
+      <a href="index.html" class="nav-logo page-link">
+        <img src="assets/test.webp" alt="GSAP Logo" />
+      </a>
+
+      <button class="burger-menu" aria-label="Menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
     </nav>
 
     <!-- Menu déroulant -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
-        <div class="dropdown-content">
-            <a href="pages/page1.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
-            <a href="pages/page1.html" class="dropdown-link page-link">S'inscrire</a>
-            <a href="pages/page1.html" class="dropdown-link page-link">Le circuit</a>
-            <a href="pages/page1.html" class="dropdown-link page-link">Les distances</a>
-            <a href="pages/page2.html" class="dropdown-link page-link">After party</a>
-            <a href="pages/page3.html" class="dropdown-link page-link">Bénévoles</a>
-            <a href="pages/page4.html" class="dropdown-link page-link">Photos</a>
-        </div>
+      <div class="dropdown-content">
+        <a href="pages/contexte.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+        <a href="pages/inscription.html" class="dropdown-link page-link">S'inscrire</a>
+        <a href="pages/page1.html" class="dropdown-link page-link">Le circuit</a>
+        <a href="pages/page1.html" class="dropdown-link page-link">Les distances</a>
+        <a href="pages/page2.html" class="dropdown-link page-link">After party</a>
+        <a href="pages/page3.html" class="dropdown-link page-link">Bénévoles</a>
+        <a href="pages/page4.html" class="dropdown-link page-link">Photos</a>
+      </div>
     </div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Course de Bordeaux</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parcours Section -->
+    <section class="parcours-wrapper">
+      <h2>Le Parcours</h2>
+      <section class="parcours-section">
+        <svg class="parcours-svg" viewBox="0 0 778 603" width="80%" height="auto" style="max-width: 900px">
+          <path
+            class="parcours-svg-path"
+            d="M769.15,3l5.85,122.86-49.72,11.08-8.76,29.53,10.96,25.31c-35.48,44.31-115.05,115.64-156.45,154.52-16.4,48.8-54.59,145.77-75.3,193.04,0,0-31.43,29.01-31.43,29.01l-75.3,31.65-62.14-4.75-70.91-61.19-54.1-24.26-78.96-88.6-14.62-44.31,11.7-1.59c-14.4-32.28-42.94-103.13-50.81-137.12-10.22-13.39-57.66-74.58-66.16-87.28l27.05-47.19,13.89-44.83,38.01-18.45C230.1,36.94,616.65,12.86,769.15,3"
+          />
+        </svg>
+      </section>
+    </section>
+
+    <!-- Distances Section -->
+    <section class="distances-section">
+      <h2>Les distances</h2>
+      <div class="distances-carousel">
+        <div class="distances-track">
+          <div class="distance-tile" data-distance="1k"><span class="distance-label">1 km</span></div>
+          <div class="distance-tile" data-distance="5k"><span class="distance-label">5 km</span></div>
+          <div class="distance-tile" data-distance="10k"><span class="distance-label">10 km</span></div>
+          <div class="distance-tile" data-distance="15k"><span class="distance-label">15 km</span></div>
+          <div class="distance-tile" data-distance="21k"><span class="distance-label">21 km</span></div>
+          <div class="distance-tile" data-distance="42k"><span class="distance-label">42 km</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenaires Section -->
+    <section class="partenaires-section">
+      <h2>Partenaires non consentis</h2>
+      <div class="partenaires-track">
+        <div class="partner-card"><img src="assets/decathlon.svg" alt="Decathlon" /></div>
+        <div class="partner-card"><img src="assets/deezer.svg" alt="Deezer" /></div>
+        <div class="partner-card"><img src="assets/new_balance.svg" alt="New Balance" /></div>
+        <div class="partner-card"><img src="assets/pompotes.svg" alt="Pompotes" /></div>
+        <div class="partner-card"><img src="assets/universite.svg" alt="Université" /></div>
+        <div class="partner-card"><img src="assets/ville.svg" alt="Ville" /></div>
+        <div class="partner-card"><img src="assets/kiprun.svg" alt="Kiprun" /></div>
+        <div class="partner-card"><img src="assets/solution.svg" alt="Solution" /></div>
+        <div class="partner-card"><img src="assets/hydratis.svg" alt="Hydratis" /></div>
+        <div class="partner-card"><img src="assets/zingueur.svg" alt="Zingueur" /></div>
+      </div>
+    </section>
+
+    <!-- Scroll Animation Section -->
+    <section class="scroll-section"></section>
+
+    <!-- Pin Animation Section -->
+    <section class="pin-section"></section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 GSAP Project. All rights reserved.</p>
-    </footer>    
+      <p>&copy; 2024 GSAP Project. All rights reserved.</p>
+    </footer>
+    <script src="lib/gsap.min.js"></script>
+    <script src="lib/ScrollTrigger.min.js"></script>
     <!-- Load Animation Modules -->
     <script src="js/animations/preloader.js"></script>
     <script src="js/animations/pageTransition.js"></script>
@@ -50,5 +115,5 @@
     <script src="js/animations/pinAnimation.js"></script>
     <script src="js/animations/customCursor.js"></script>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
