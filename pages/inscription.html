@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP Project - Gallery</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <a href="../index.html" class="nav-logo page-link">
+        <img src="../assets/test.webp" alt="GSAP Logo" />
+      </a>
+
+      <button class="burger-menu" aria-label="Menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Menu déroulant -->
+    <div class="menu-overlay"></div>
+    <div class="dropdown-menu">
+      <div class="dropdown-content">
+        <a href="page1.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+        <a href="inscription.html" class="dropdown-link page-link">S'inscrire</a>
+        <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
+        <a href="page1.html" class="dropdown-link page-link">Les distances</a>
+        <a href="page2.html" class="dropdown-link page-link">After party</a>
+        <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
+        <a href="page4.html" class="dropdown-link page-link">Photos</a>
+      </div>
+    </div>
+
+    <main id="register-app" class="page-container">
+      <section class="carousel-section">
+        <h2 class="carousel-title">Nos dossards</h2>
+
+        <div class="carousel" aria-label="Carousel dossards">
+          <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+
+          <div class="carousel-viewport">
+            <ul class="carousel-track">
+              <li class="carousel-item">
+                <img src="../assets/dossard1.png" alt="Dossard 1"/>
+                <div class="slide-content">
+                  <h3 class="slide-title">Dossard 1</h3>
+                  <p class="slide-sub">Couleur & design officiels</p>
+                </div>
+              </li>
+              <li class="carousel-item">
+                <img src="../assets/dossard2.png" alt="Dossard 2"/>
+                <div class="slide-content">
+                  <h3 class="slide-title">Dossard 2</h3>
+                  <p class="slide-sub">Numéro & sponsors</p>
+                </div>
+              </li>
+              <li class="carousel-item">
+                <img src="../assets/dossard3.png" alt="Dossard 3"/>
+                <div class="slide-content">
+                  <h3 class="slide-title">Dossard 3</h3>
+                  <p class="slide-sub">Edition limitée</p>
+                </div>
+              </li>
+              <li class="carousel-item">
+                <img src="../assets/dossard4.png" alt="Dossard 4"/>
+                <div class="slide-content">
+                  <h3 class="slide-title">Dossard 4</h3>
+                  <p class="slide-sub">Design finalisé</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <button class="carousel-btn next" aria-label="Suivant">›</button>
+          
+        </div>
+
+      </section>
+    </main>
+
+    <script src="../lib/gsap.min.js"></script>
+    <script src="../lib/ScrollTrigger.min.js"></script>
+    <script src="../js/animations/preloader.js"></script>
+    <script src="../js/animations/pageTransition.js"></script>
+    <script src="../js/animations/textReveal.js"></script>
+    <script src="../js/animations/scrollAnimation.js"></script>
+    <script src="../js/animations/customCursor.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script src="../js/animations/dossardCarousel.js"></script>
+  </body>
+</html>
