@@ -42,43 +42,43 @@
         <h2 class="carousel-title">Nos dossards</h2>
 
         <div class="carousel" aria-label="Carousel dossards">
+          
+          <div class="carousel-left-panel">
+            <div class="panel-content-wrapper">
+              <h3 class="slide-title-vertical">Dossard 1</h3>
+              <p class="slide-sub-vertical">Couleur & design officiels</p>
+            </div>
+          </div>
+
           <button class="carousel-btn prev" aria-label="Précédent">‹</button>
 
           <div class="carousel-viewport">
             <ul class="carousel-track">
-              <li class="carousel-item">
+              <li class="carousel-item" data-title="Dossard 1" data-sub="Couleur & design officiels">
                 <img src="../assets/dossard1.png" alt="Dossard 1"/>
-                <div class="slide-content">
-                  <h3 class="slide-title">Dossard 1</h3>
-                  <p class="slide-sub">Couleur & design officiels</p>
-                </div>
               </li>
-              <li class="carousel-item">
+              <li class="carousel-item" data-title="Dossard 2" data-sub="Numéro & sponsors">
                 <img src="../assets/dossard2.png" alt="Dossard 2"/>
-                <div class="slide-content">
-                  <h3 class="slide-title">Dossard 2</h3>
-                  <p class="slide-sub">Numéro & sponsors</p>
-                </div>
               </li>
-              <li class="carousel-item">
+              <li class="carousel-item" data-title="Dossard 3" data-sub="Edition limitée">
                 <img src="../assets/dossard3.png" alt="Dossard 3"/>
-                <div class="slide-content">
-                  <h3 class="slide-title">Dossard 3</h3>
-                  <p class="slide-sub">Edition limitée</p>
-                </div>
               </li>
-              <li class="carousel-item">
+              <li class="carousel-item" data-title="Dossard 4" data-sub="Design finalisé">
                 <img src="../assets/dossard4.png" alt="Dossard 4"/>
-                <div class="slide-content">
-                  <h3 class="slide-title">Dossard 4</h3>
-                  <p class="slide-sub">Design finalisé</p>
-                </div>
               </li>
             </ul>
           </div>
 
           <button class="carousel-btn next" aria-label="Suivant">›</button>
-          
+
+          <div class="carousel-right-panel">
+            <div class="carousel-counter">
+              <span class="counter-current">01</span>
+              <span class="counter-separator">/</span>
+              <span class="counter-total">04</span>
+            </div>
+          </div>
+
         </div>
 
       </section>
@@ -92,7 +92,6 @@
     <script src="../js/animations/scrollAnimation.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
-    
     <script src="../js/animations/dossardCarousel.js"></script>
   </body>
 </html>

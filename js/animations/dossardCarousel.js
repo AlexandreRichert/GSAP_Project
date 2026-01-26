@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.querySelector('.carousel-btn.next')
   const carousel = document.querySelector('.carousel')
 
+  const titleEl = document.querySelector('.slide-title-vertical')
+  const subEl = document.querySelector('.slide-sub-vertical')
+  const counterCurrent = document.querySelector('.counter-current')
+  const counterTotal = document.querySelector('.counter-total')
+
   let currentIndex = 0
   let autoplayTimer = null
   const AUTOPLAY_DELAY = 4500
@@ -14,31 +19,43 @@ document.addEventListener('DOMContentLoaded', () => {
     return
   }
 
-  function createCounter() {
-    const counter = document.createElement('div')
-    counter.className = 'carousel-counter'
-    counter.innerHTML = `
-      <span class="counter-current">01</span>
-      <span class="counter-separator">/</span>
-      <span class="counter-total">${String(items.length).padStart(2, '0')}</span>
-    `
-    carousel.appendChild(counter)
-    return counter
+  if (counterTotal) {
+    counterTotal.textContent = String(items.length).padStart(2, '0')
   }
 
-  const counter = createCounter()
-  const counterCurrent = counter.querySelector('.counter-current')
+  function updateLeftPanel(item) {
+    const title = item.getAttribute('data-title') || ''
+    const sub = item.getAttribute('data-sub') || ''
+
+    if (!titleEl || !subEl) return
+    const tl = gsap.timeline()
+    tl.to([titleEl, subEl], {
+      y: -20,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in',
+    })
+
+    tl.call(() => {
+      titleEl.textContent = title
+      subEl.textContent = sub
+    })
+
+    tl.fromTo(titleEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' })
+    tl.fromTo(subEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+  }
 
   function updateCounter(index) {
+    if (!counterCurrent) return
     const newNumber = String(index + 1).padStart(2, '0')
     gsap.to(counterCurrent, {
-      y: -10,
+      y: -15,
       opacity: 0,
       duration: 0.3,
       ease: 'power2.in',
       onComplete: () => {
         counterCurrent.textContent = newNumber
-        gsap.fromTo(counterCurrent, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' })
+        gsap.fromTo(counterCurrent, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' })
       },
     })
   }
@@ -48,38 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (i === 0) {
         gsap.set(item, { opacity: 1, visibility: 'visible', zIndex: 2 })
         const img = item.querySelector('img')
-        const title = item.querySelector('.slide-title')
-        const sub = item.querySelector('.slide-sub')
-
-        if (img) gsap.set(img, { scale: 1.05 })
-        if (title) gsap.set(title, { y: 0, opacity: 1 })
-        if (sub) gsap.set(sub, { y: 0, opacity: 1 })
+        if (img) gsap.set(img, { scale: 1.0 })
+        updateLeftPanel(item)
       } else {
         gsap.set(item, { opacity: 0, visibility: 'hidden', zIndex: 1 })
       }
     })
   }
 
-  function revealText(item) {
-    const title = item.querySelector('.slide-title')
-    const sub = item.querySelector('.slide-sub')
-
-    const tl = gsap.timeline()
-
-    if (title) {
-      tl.fromTo(title, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
-    }
-
-    if (sub) {
-      tl.fromTo(sub, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-    }
-  }
-
   function goTo(newIndex) {
     if (gsap.isTweening(items[currentIndex])) return
 
     newIndex = ((newIndex % items.length) + items.length) % items.length
-
     if (newIndex === currentIndex) return
 
     const currentSlide = items[currentIndex]
@@ -97,40 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     const currentImg = currentSlide.querySelector('img')
-    const currentTitle = currentSlide.querySelector('.slide-title')
-    const currentSub = currentSlide.querySelector('.slide-sub')
-
-    if (currentTitle) {
-      tl.to(
-        currentTitle,
-        {
-          y: -20,
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.in',
-        },
-        0
-      )
-    }
-    if (currentSub) {
-      tl.to(
-        currentSub,
-        {
-          y: -20,
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.in',
-        },
-        0
-      )
-    }
-
     if (currentImg) {
       tl.to(
         currentImg,
         {
-          scale: 1.1,
-          duration: 0.8,
+          scale: 1.08,
+          duration: 0.9,
           ease: 'power2.inOut',
         },
         0
@@ -141,34 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
       currentSlide,
       {
         opacity: 0,
-        duration: 0.6,
+        duration: 0.7,
         ease: 'power2.inOut',
       },
       0
     )
 
     const nextImg = nextSlide.querySelector('img')
-
     if (nextImg) {
-      gsap.set(nextImg, { scale: 1.15 })
+      gsap.set(nextImg, { scale: 1.1 })
     }
-
-    tl.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 0.3)
+    tl.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power2.inOut' }, 0.3)
 
     if (nextImg) {
       tl.to(
         nextImg,
         {
-          scale: 1.05,
-          duration: 1.2,
+          scale: 1.0,
+          duration: 1.4,
           ease: 'power2.out',
         },
         0.3
       )
     }
-
-    tl.call(() => revealText(nextSlide), null, 0.6)
-
+    tl.call(() => updateLeftPanel(nextSlide), null, 0.4)
     updateCounter(newIndex)
   }
 
@@ -210,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deltaX = currentX - startX
     const threshold = window.innerWidth * 0.15
-
     if (Math.abs(deltaX) > threshold) {
       if (deltaX < 0) {
         next()
@@ -253,5 +217,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlides()
   startAutoplay()
 
-  console.log('Carousel initialisé avec succès!')
+  console.log('Carousel simple (HTML) initialisé avec succès! ✨')
 })
