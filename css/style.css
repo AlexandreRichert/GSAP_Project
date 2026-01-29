@@ -253,9 +253,6 @@ body {
   filter: brightness(1.1) contrast(1.05);
 }
 
-/* États initiaux - gérés par GSAP, pas de CSS ici */
-/* On retire les règles qui cachaient navbar et hero-text */
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .preloader-logo {
@@ -277,7 +274,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--background-color); /* Couleur unie, pas de gradient */
+  background: var(--background-color);
   z-index: 9998;
   pointer-events: none;
   transform: translateX(-100%);
@@ -310,7 +307,6 @@ body {
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
 }
 
-/* Fallback Emoji Runner */
 .runner-emoji {
   font-size: 120px;
   line-height: 1;
@@ -351,12 +347,10 @@ body {
   }
 }
 
-/* Effet de flou de mouvement pour le coureur */
 .page-transition-runner.moving {
   filter: blur(2px);
 }
 
-/* Variante avec particules (optionnel) */
 .page-transition-overlay::before {
   content: '';
   position: absolute;
@@ -380,6 +374,9 @@ body {
   }
 }
 
+section {
+  margin-bottom: 200px;
+}
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -803,21 +800,8 @@ body.page-contexte .btn-secondary:hover {
 .distances-section {
   position: relative;
   padding: 120px 20px;
-  background: linear-gradient(180deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
   overflow: visible !important;
   min-height: 600px;
-}
-
-.distances-section h2 {
-  text-align: center;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: #ece544;
-  margin-bottom: 80px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  position: relative;
-  z-index: 2;
 }
 
 .distances-carousel {
@@ -977,10 +961,6 @@ body.page-contexte .btn-secondary:hover {
 
 .carousel-arrow:hover svg {
   transform: scale(1.1);
-}
-
-.carousel-arrow.prev svg {
-  transform: rotate(180deg);
 }
 
 .carousel-arrow.prev:hover svg {
