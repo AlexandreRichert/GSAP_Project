@@ -13,6 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
     return
   }
 
+  // CORRECTION: Vérifier le type de navigation AVANT de lire sessionStorage
+  const navEntry = performance.getEntriesByType('navigation')[0]
+  const isReload = navEntry && navEntry.type === 'reload'
+
+  // Si c'est un reload, effacer le sessionStorage
+  if (isReload) {
+    sessionStorage.removeItem('pageTransition')
+  }
+
+  // Maintenant vérifier si on vient d'une transition de page (navigation)
+  const fromTransition = sessionStorage.getItem('pageTransition') === 'true'
+
+  if (fromTransition) {
+    // Si on vient d'une navigation, pas de preloader
+    preloader.style.display = 'none'
+    document.body.style.overflow = ''
+
+    // S'assurer que la navbar et le contenu sont visibles
+    if (mainNav) gsap.set(mainNav, { opacity: 1 })
+    if (heroText) gsap.set(heroText, { opacity: 1 })
+
+    // Initialiser les animations de page directement
+    initPageAnimations()
+
+    console.log('Navigation détectée - Preloader sauté')
+    return
+  }
+
+  // Sinon, c'est un vrai chargement/refresh : lancer le preloader
+  console.log('Chargement initial - Preloader lancé')
+
   // Empêcher le scroll pendant le preloader
   document.body.style.overflow = 'hidden'
 
@@ -62,15 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const deltaY = navLogoRect.top + navLogoRect.height / 2 - (logoRect.top + logoRect.height / 2)
     const scaleRatio = navLogoRect.width / logoRect.width
 
-    console.log('Position logo preloader:', logoRect)
-    console.log('Position logo navbar:', navLogoRect)
-    console.log('Delta X:', deltaX, 'Delta Y:', deltaY, 'Scale:', scaleRatio)
-
     // Animation de déplacement
     gsap.to(logo, {
       x: deltaX,
       y: deltaY,
-      scale: scaleRatio * 0.75, // Légèrement plus petit pour correspondre au logo de la nav
+      scale: scaleRatio * 0.75,
       duration: 1.2,
       ease: 'power3.inOut',
     })
@@ -87,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '-=0.6'
   )
 
-  // 5. Apparition de la navbar (on restaure l'opacité)
+  // 5. Apparition de la navbar
   preloaderTimeline.to(
     mainNav,
     {
@@ -197,7 +224,7 @@ function initPageAnimations() {
     })
   }
 
-  // Animation des cartes partenaires (apparition des images)
+  // Animation des cartes partenaires
   const partnerCards = document.querySelectorAll('.partner-card')
   if (partnerCards.length > 0) {
     partnerCards.forEach((card) => {
