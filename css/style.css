@@ -98,7 +98,7 @@ body::-webkit-scrollbar {
 .burger-line {
   width: 100%;
   height: 3px;
-  background: var(--accent-color);
+  background: var(--light-color);
   border-radius: 10px;
   transition: all 0.3s ease;
   box-shadow: 0 0 5px rgba(236, 229, 68, 0.3);
@@ -167,8 +167,8 @@ body::-webkit-scrollbar {
 }
 
 .dropdown-link:hover {
-  color: var(--accent-color);
-  border-left-color: var(--accent-color);
+  color: var(--light-color);
+  border-left-color: var(--light-color);
   padding-left: 2rem;
   transform: translateX(5px);
 }
@@ -178,9 +178,9 @@ body::-webkit-scrollbar {
 }
 
 .dropdown-link.active {
-  color: var(--accent-color);
-  border-left-color: var(--accent-color);
-  background: rgba(236, 229, 68, 0.1);
+  color: var(--light-color);
+  border-left-color: var(--light-color);
+  background: rgba(231, 231, 223, 0.1);
   font-weight: 600;
 }
 
@@ -309,6 +309,9 @@ body::-webkit-scrollbar {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
+.map-container h3 {
+  text-align: center;
+}
 .parcours-map {
   position: absolute;
   top: 0;
@@ -329,7 +332,6 @@ body::-webkit-scrollbar {
   pointer-events: none;
 }
 
-/* Path du circuit - gris/derrière */
 .parcours-svg-path-bg {
   stroke: rgba(255, 255, 255, 0.15);
   stroke-width: 4;
@@ -339,17 +341,21 @@ body::-webkit-scrollbar {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* Path du circuit - animé/devant */
 .parcours-svg-path {
   stroke: var(--light-color);
-  stroke-width: 4;
+  stroke-width: 10;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  filter: drop-shadow(0 0 8px rgba(237, 236, 232, 0.6));
+  filter: drop-shadow(0 0 10px rgba(222, 222, 216, 0.25));
   z-index: 3;
+}
+
+.parcours-svg-filled {
+  fill: rgb(50 234 255 / 66%);
+  stroke-width: 0;
 }
 
 .parcours-pin {
@@ -896,10 +902,10 @@ body::-webkit-scrollbar {
 .text-bounce-wrapper p {
   font-size: 2.8rem;
   font-weight: 900;
-  color: var(--accent-color);
+  color: var(--light-color);
   text-shadow:
-    0 2px 10px rgba(236, 229, 68, 0.3),
-    0 0 20px rgba(236, 229, 68, 0.2);
+    0 2px 10px rgba(243, 243, 238, 0.481),
+    0 0 20px rgba(243, 243, 238, 0.481);
   letter-spacing: 0.5px;
   margin-bottom: 0;
 }
@@ -942,7 +948,7 @@ body::-webkit-scrollbar {
 }
 
 .btn-primary {
-  background: var(--accent-color);
+  background: var(--light-color);
   color: var(--dark-color);
   box-shadow: 0 8px 24px rgba(236, 229, 68, 0.16);
 }
@@ -1102,4 +1108,61 @@ body.page-contexte .btn-secondary:hover {
     height: 249px;
     font-size: 1rem;
   }
+}
+
+#cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--light-color);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  z-index: 10000;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--light-color);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 0 18px var(--accent-color);
+  z-index: 9999;
+}
+
+#cursor-particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, var(--accent-color) 0%, var(--light-color) 60%);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 6px var(--accent-color) 65;
+  z-index: 9998;
 }

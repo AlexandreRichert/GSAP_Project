@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Preloader -->
     <div class="preloader"></div>
 
-    <!-- Navigation -->
     <nav class="main-nav">
       <a href="index.html" class="nav-logo page-link">
         <img src="assets/test.webp" alt="GSAP Logo" />
@@ -23,7 +21,6 @@
       </button>
     </nav>
 
-    <!-- Menu déroulant -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
       <div class="dropdown-content">
@@ -36,7 +33,7 @@
         <a href="pages/page4.html" class="dropdown-link page-link">Photos</a>
       </div>
     </div>
-    <!-- Hero Section -->
+
     <section class="hero">
       <div class="hero-content">
         <div class="hero-text" data-copy-container>
@@ -50,16 +47,13 @@
       </div>
     </section>
 
-    <!-- Parcours Section -->
     <section class="parcours-wrapper">
       <h2>Le Parcours</h2>
       <section class="parcours-section">
         <div class="parcours-container">
-          <!-- Gauche: Carte GPS -->
           <div class="parcours-left">
             <div class="map-container">
-              <img src="assets/bordeaux-lac.png" alt="Carte du circuit de Bordeaux" class="parcours-map" />
-
+              <h3>Bordeaux lac</h3>
               <!-- SVG avec le path du circuit - Basé sur coordonnées GPS réelles -->
               <svg
                 class="parcours-svg-overlay"
@@ -68,19 +62,20 @@
                 height="100%"
                 preserveAspectRatio="xMidYMid meet"
               >
-                <!-- Path déroulé (gris, derrière) - COORDONNÉES GPS RÉELLES -->
                 <path
                   class="parcours-svg-path-bg"
                   d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54"
                 />
-                <!-- Path animé (couleur, devant) - COORDONNÉES GPS RÉELLES -->
+                <path
+                  class="parcours-svg-filled"
+                  d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54 Z"
+                />
                 <path
                   class="parcours-svg-path"
                   d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54"
                 />
               </svg>
 
-              <!-- Pin animé qui suit le path -->
               <div class="parcours-pin">
                 <div class="pin-center"></div>
                 <div class="pin-pulse"></div>
@@ -104,9 +99,7 @@
                   <div class="altitude-tick">0m</div>
                 </div>
 
-                <!-- Graphique SVG -->
                 <svg class="altitude-chart" viewBox="0 0 800 300" preserveAspectRatio="none">
-                  <!-- Dégradé -->
                   <defs>
                     <linearGradient id="altitudeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" style="stop-color: rgba(236, 229, 68, 0.4); stop-opacity: 1" />
@@ -126,7 +119,6 @@
                     fill="url(#altitudeGradient)"
                   />
 
-                  <!-- Ligne d'altitude -->
                   <path
                     class="altitude-line"
                     d="M 0,300 L 14,193 L 29,236 L 43,236 L 57,193 L 72,25 L 86,25 L 100,107 L 115,25 L 129,25 L 143,25 L 157,25 L 172,25 L 186,25 L 200,300 L 215,300 L 229,300 L 243,300 L 257,300 L 272,300 L 286,300 L 300,300 L 314,300 L 329,300 L 343,300 L 357,300 L 371,300 L 386,300 L 400,300 L 414,300 L 429,300 L 443,300 L 457,300 L 471,300 L 486,300 L 500,300 L 514,300 L 529,300 L 543,300 L 557,300 L 571,300 L 586,300 L 600,300 L 614,300 L 629,300 L 643,300 L 657,300 L 671,300 L 686,300 L 700,300 L 714,300 L 729,300 L 743,300 L 757,300 L 771,300 L 786,300 L 800,300"
@@ -146,7 +138,6 @@
                     filter="drop-shadow(0 0 10px rgba(237, 236, 232, 0.6))"
                   />
 
-                  <!-- Ligne verticale du marqueur -->
                   <line
                     class="altitude-marker-line"
                     x1="0"
@@ -190,7 +181,6 @@
         </div>
       </section>
     </section>
-    <!-- Distances Section -->
     <section class="distances-section">
       <h2>Les distances</h2>
       <div class="distances-carousel">
@@ -205,7 +195,6 @@
       </div>
     </section>
 
-    <!-- Partenaires Section -->
     <section class="partenaires-section">
       <h2>Partenaires non consentis</h2>
       <div class="partenaires-track">
@@ -222,13 +211,10 @@
       </div>
     </section>
 
-    <!-- Scroll Animation Section -->
     <section class="scroll-section"></section>
 
-    <!-- Pin Animation Section -->
     <section class="pin-section"></section>
 
-    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
@@ -236,7 +222,6 @@
     <script src="lib/ScrollTrigger.min.js"></script>
     <script src="lib/SplitText.min.js"></script>
 
-    <!-- Load Animation Modules -->
     <script src="js/animations/preloader.js"></script>
     <script src="js/animations/pageTransition.js"></script>
     <script src="js/animations/horizontalScroll.js"></script>

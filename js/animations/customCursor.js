@@ -25,66 +25,21 @@ class CustomCursor {
     document.addEventListener('mouseleave', () => this.hideCursor())
     document.addEventListener('mousedown', () => this.handleMouseDown())
     document.addEventListener('mouseup', () => this.handleMouseUp())
-
     this.setupInteractiveElements()
-
     gsap.ticker.add(() => this.animate())
-
-    console.log('✨ Modern elegant cursor initialized')
   }
 
   createContainer() {
     this.container = document.createElement('div')
-    this.container.id = 'modern-cursor-container'
-    this.container.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      overflow: hidden;
-    `
+    this.container.id = 'cursor-container'
     document.body.appendChild(this.container)
-
-    const rootStyles = getComputedStyle(document.documentElement)
-    const lightColor = (rootStyles.getPropertyValue('--light-color') || '#f8fafc').trim()
-    const accentColor = (rootStyles.getPropertyValue('--accent-color') || '#ece544').trim()
 
     this.cursor = document.createElement('div')
     this.cursor.id = 'cursor-dot'
-    this.cursor.style.cssText = `
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      background: ${lightColor};
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      box-shadow: 0 0 10px rgba(255,255,255,0.08);
-      transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-      z-index: 10000;
-    `
     this.container.appendChild(this.cursor)
 
     const ring = document.createElement('div')
     ring.id = 'cursor-ring'
-    ring.style.cssText = `
-      position: fixed;
-      width: 30px;
-      height: 30px;
-      border: 2px solid ${lightColor};
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      backdrop-filter: blur(2px);
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 0 18px ${accentColor}22;
-      z-index: 9999;
-    `
     this.container.appendChild(ring)
   }
 
@@ -135,21 +90,10 @@ class CustomCursor {
     }
 
     const particle = document.createElement('div')
-    const rootStyles = getComputedStyle(document.documentElement)
-    const accentColor = (rootStyles.getPropertyValue('--accent-color') || '#ece544').trim()
-    const lightColor = (rootStyles.getPropertyValue('--light-color') || '#f8fafc').trim()
-
+    particle.id = 'cursor-particle'
     particle.style.cssText = `
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: radial-gradient(circle, ${accentColor} 0%, ${lightColor} 60%);
-      border-radius: 50%;
-      pointer-events: none;
       left: ${this.mouseX}px;
       top: ${this.mouseY}px;
-      box-shadow: 0 0 6px ${accentColor}66;
-      z-index: 9998;
     `
 
     this.container.appendChild(particle)
