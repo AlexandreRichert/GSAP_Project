@@ -80,7 +80,6 @@
       </div>
     </div>
 
-    <!-- Navigation -->
     <nav class="main-nav">
       <a href="index.html" class="nav-logo page-link">
         <img src="assets/test.webp" alt="GSAP Logo" />
@@ -93,7 +92,6 @@
       </button>
     </nav>
 
-    <!-- Menu déroulant -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
       <div class="dropdown-content">
@@ -110,7 +108,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-text">
+        <div class="hero-text" data-copy-container>
           <h1>Course de Bordeaux</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -121,20 +119,140 @@
       </div>
     </section>
 
-    <!-- Parcours Section -->
     <section class="parcours-wrapper">
       <h2>Le Parcours</h2>
       <section class="parcours-section">
-        <svg class="parcours-svg" viewBox="0 0 778 603" width="80%" height="auto" style="max-width: 900px">
-          <path
-            class="parcours-svg-path"
-            d="M769.15,3l5.85,122.86-49.72,11.08-8.76,29.53,10.96,25.31c-35.48,44.31-115.05,115.64-156.45,154.52-16.4,48.8-54.59,145.77-75.3,193.04,0,0-31.43,29.01-31.43,29.01l-75.3,31.65-62.14-4.75-70.91-61.19-54.1-24.26-78.96-88.6-14.62-44.31,11.7-1.59c-14.4-32.28-42.94-103.13-50.81-137.12-10.22-13.39-57.66-74.58-66.16-87.28l27.05-47.19,13.89-44.83,38.01-18.45C230.1,36.94,616.65,12.86,769.15,3"
-          />
-        </svg>
+        <div class="parcours-container">
+          <div class="parcours-left">
+            <div class="map-container">
+              <h3>Bordeaux lac</h3>
+              <!-- SVG avec le path du circuit - Basé sur coordonnées GPS réelles -->
+              <svg
+                class="parcours-svg-overlay"
+                viewBox="0 0 800 600"
+                width="100%"
+                height="100%"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <path
+                  class="parcours-svg-path-bg"
+                  d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54"
+                />
+                <path
+                  class="parcours-svg-filled"
+                  d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54 Z"
+                />
+                <path
+                  class="parcours-svg-path"
+                  d="M 266.13,106.54 L 157.54,113.09 L 140.03,143.20 L 122.99,172.98 L 96.20,204.73 L 92.31,215.53 L 102.54,241.72 L 111.79,250.23 L 168.30,258.08 L 173.64,264.96 L 171.69,271.83 L 149.77,275.76 L 158.55,294.09 L 169.75,317.66 L 187.28,340.24 L 181.92,348.76 L 186.79,364.14 L 204.33,395.24 L 230.14,412.59 L 253.52,442.05 L 267.15,465.29 L 303.69,486.57 L 322.19,505.23 L 340.70,515.05 L 342.64,528.15 L 360.18,530.77 L 383.07,522.91 L 427.39,522.26 L 479.51,502.29 L 506.77,470.53 L 529.66,416.84 L 550.60,357.27 L 566.67,327.15 L 599.31,303.91 L 629.50,274.78 L 680.16,234.19 L 686.96,216.84 L 678.19,198.84 L 683.55,180.84 L 688.88,155.79 L 707.69,146.99 L 701.13,120.01 L 697.86,85.34 L 696.70,69.23 L 575.88,74.47 L 442.44,84.94 L 385.97,85.92 L 367.96,86.90 L 362.12,92.47 L 354.32,100.65 L 354.33,100.68 L 349.63,101.45 L 267.63,105.21 L 266.20,106.44 L 266.17,106.54"
+                />
+              </svg>
+
+              <div class="parcours-pin">
+                <div class="pin-center"></div>
+                <div class="pin-pulse"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="parcours-right">
+            <div class="altitude-container">
+              <h3>Profil d'altitude</h3>
+
+              <div class="altitude-wrapper">
+                <div class="altitude-scale-left">
+                  <div class="altitude-tick">7m</div>
+                  <div class="altitude-tick">6m</div>
+                  <div class="altitude-tick">5m</div>
+                  <div class="altitude-tick">4m</div>
+                  <div class="altitude-tick">3m</div>
+                  <div class="altitude-tick">2m</div>
+                  <div class="altitude-tick">1m</div>
+                  <div class="altitude-tick">0m</div>
+                </div>
+
+                <svg class="altitude-chart" viewBox="0 0 800 300" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="altitudeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color: rgba(236, 229, 68, 0.4); stop-opacity: 1" />
+                      <stop offset="100%" style="stop-color: rgba(236, 229, 68, 0.05); stop-opacity: 1" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Grille horizontale légère -->
+                  <line x1="0" y1="75" x2="800" y2="75" class="altitude-gridline" />
+                  <line x1="0" y1="150" x2="800" y2="150" class="altitude-gridline" />
+                  <line x1="0" y1="225" x2="800" y2="225" class="altitude-gridline" />
+
+                  <!-- Zone de remplissage -->
+                  <path
+                    class="altitude-fill"
+                    d="M 0,300 L 14,193 L 29,236 L 43,236 L 57,193 L 72,25 L 86,25 L 100,107 L 115,25 L 129,25 L 143,25 L 157,25 L 172,25 L 186,25 L 200,300 L 215,300 L 229,300 L 243,300 L 257,300 L 272,300 L 286,300 L 300,300 L 314,300 L 329,300 L 343,300 L 357,300 L 371,300 L 386,300 L 400,300 L 414,300 L 429,300 L 443,300 L 457,300 L 471,300 L 486,300 L 500,300 L 514,300 L 529,300 L 543,300 L 557,300 L 571,300 L 586,300 L 600,300 L 614,300 L 629,300 L 643,300 L 657,300 L 671,300 L 686,300 L 700,300 L 714,300 L 729,300 L 743,300 L 757,300 L 771,300 L 786,300 L 800,300 L 800,300 L 0,300 Z"
+                    fill="url(#altitudeGradient)"
+                  />
+
+                  <path
+                    class="altitude-line"
+                    d="M 0,300 L 14,193 L 29,236 L 43,236 L 57,193 L 72,25 L 86,25 L 100,107 L 115,25 L 129,25 L 143,25 L 157,25 L 172,25 L 186,25 L 200,300 L 215,300 L 229,300 L 243,300 L 257,300 L 272,300 L 286,300 L 300,300 L 314,300 L 329,300 L 343,300 L 357,300 L 371,300 L 386,300 L 400,300 L 414,300 L 429,300 L 443,300 L 457,300 L 471,300 L 486,300 L 500,300 L 514,300 L 529,300 L 543,300 L 557,300 L 571,300 L 586,300 L 600,300 L 614,300 L 629,300 L 643,300 L 657,300 L 671,300 L 686,300 L 700,300 L 714,300 L 729,300 L 743,300 L 757,300 L 771,300 L 786,300 L 800,300"
+                    stroke="var(--light-color)"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <circle
+                    class="altitude-marker"
+                    cx="0"
+                    cy="300"
+                    r="8"
+                    fill="var(--light-color)"
+                    filter="drop-shadow(0 0 10px rgba(237, 236, 232, 0.6))"
+                  />
+
+                  <line
+                    class="altitude-marker-line"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="300"
+                    stroke="var(--light-color)"
+                    stroke-width="1"
+                    opacity="0.4"
+                    stroke-dasharray="3,3"
+                  />
+                </svg>
+              </div>
+
+              <div class="altitude-scale-bottom">
+                <div class="distance-tick">0 km</div>
+                <div class="distance-tick">1.5 km</div>
+                <div class="distance-tick">3 km</div>
+                <div class="distance-tick">4.5 km</div>
+                <div class="distance-tick">6 km</div>
+                <div class="distance-tick">6.4 km</div>
+              </div>
+
+
+              <div class="altitude-info">
+                <div class="altitude-stat">
+                  <span class="altitude-label">Distance totale</span>
+                  <span class="altitude-value">6,4 km</span>
+                </div>
+                <div class="altitude-stat">
+                  <span class="altitude-label">Dénivelé +</span>
+                  <span class="altitude-value">7 m</span>
+                </div>
+                <div class="altitude-stat">
+                  <span class="altitude-label">Dénivelé -</span>
+                  <span class="altitude-value">7 m</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
-
-    <!-- Distances Section avec Carousel Circulaire 3D -->
     <section class="distances-section">
       <h2>Les distances</h2>
       <div class="distances-carousel">
@@ -152,7 +270,6 @@
       </div>
     </section>
 
-    <!-- Partenaires Section -->
     <section class="partenaires-section">
       <h2>Partenaires non consentis</h2>
       <div class="partenaires-track">
@@ -169,13 +286,10 @@
       </div>
     </section>
 
-    <!-- Scroll Animation Section -->
     <section class="scroll-section"></section>
 
-    <!-- Pin Animation Section -->
     <section class="pin-section"></section>
 
-    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
@@ -183,12 +297,11 @@
     <!-- Scripts GSAP -->
     <script src="lib/gsap.min.js"></script>
     <script src="lib/ScrollTrigger.min.js"></script>
-    
-    <!-- Load Animation Modules - PRELOADER EN PREMIER -->
+    <script src="lib/SplitText.min.js"></script>
+
     <script src="js/animations/preloader.js"></script>
     <script src="js/animations/pageTransition.js"></script>
     <script src="js/animations/horizontalScroll.js"></script>
-    <script src="js/animations/textReveal.js"></script>
     <script src="js/animations/scrollAnimation.js"></script>
     <script src="js/animations/pinAnimation.js"></script>
     <script src="js/animations/customCursor.js"></script>

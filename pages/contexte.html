@@ -38,51 +38,49 @@
     </div>
 
     <!-- Contexte Section -->
-    <section class="contexte">
+    <section class="contexte" id="contexte-section">
       <div class="contexte-content container">
         <div class="contexte-text">
-          <h2>Pourquoi cette course ?</h2>
-          <div class="content">
+          <h2 class="split-text">Pourquoi cette course ?</h2>
+
+          <div class="content" data-copy-container>
             <p>
-              Le marathon est une distance à part. Mythique, exigeante, symbolique. C’est souvent un objectif de longue
-              haleine, qui demande du temps, de l’engagement et une vraie préparation.
+              Le marathon est une distance à part. Mythique, exigeante, symbolique. C'est souvent un objectif de longue
+              haleine, qui demande du temps, de l'engagement et une vraie préparation.
             </p>
             <p>
-              En tant que coureuse du dimanche, courir mon premier marathon est déjà une aventure forte. Mais j’avais
-              envie d’aller plus loin : transformer cette course en un moment de partage, et la rendre inoubliable en la
+              En tant que coureuse du dimanche, courir mon premier marathon est déjà une aventure forte. Mais j'avais
+              envie d'aller plus loin : transformer cette course en un moment de partage, et la rendre inoubliable en la
               vivant entourée de ceux qui comptent.
             </p>
             <p>
-              La course des copains, c’est avant tout une invitation. Une invitation à découvrir (ou redécouvrir) la
-              course à pied, une passion qui m’a surprise ces dernières années, et à en partager un morceau, chacun à
+              La course des copains, c'est avant tout une invitation. Une invitation à découvrir (ou redécouvrir) la
+              course à pied, une passion qui m'a surprise ces dernières années, et à en partager un morceau, chacun à
               son rythme.
             </p>
             <p>
-              L’idée est simple : permettre à chacun de se challenger à son niveau. Que vous couriez 7 km ou davantage,
-              que vous soyez débutant ou habitué des baskets, l’objectif est le même : se dépasser, s’encourager, et
+              L'idée est simple : permettre à chacun de se challenger à son niveau. Que vous couriez 7 km ou davantage,
+              que vous soyez débutant ou habitué des baskets, l'objectif est le même : se dépasser, s'encourager, et
               créer ensemble un souvenir fort.
             </p>
-
             <p>
-              Chaque participant peut s’inscrire sur la distance de son choix. L’ensemble des coureurs sera réparti sur
-              la distance marathon afin que l’aventure soit collective, vivante, et portée tout au long du parcours par
+              Chaque participant peut s'inscrire sur la distance de son choix. L'ensemble des coureurs sera réparti sur
+              la distance marathon afin que l'aventure soit collective, vivante, et portée tout au long du parcours par
               des énergies nouvelles.
             </p>
-
             <p>
               La course se déroulera au cœur du lac de Bordeaux, sur une boucle de 7 km, idéale pour profiter de
               ravitaillements réguliers et de toilettes publiques. Des bénévoles à vélo seront également présents pour
-              veiller au bon déroulement de l’événement.
+              veiller au bon déroulement de l'événement.
             </p>
+            <p>La course des copains, c'est un marathon… mais surtout une histoire de liens, de partage et de copain</p>
+            <p>Alors, prêt·e à tenter l'aventure ?</p>
+          </div>
 
-            <p>La course des copains, c’est un marathon… mais surtout une histoire de liens, de partage et de copain</p>
-
-            <p>Alors, prêt·e à tenter l’aventure ?</p>
-            <p>Inscris-toi à la distance de ton choix</p>
-            <div class="actions">
-              <button class="btn btn-primary">Team Runner</button>
-              <button class="btn btn-secondary">Team Bénévole</button>
-            </div>
+          <!-- Boutons -->
+          <div class="actions">
+            <button class="btn btn-primary">Team Runner</button>
+            <button class="btn btn-secondary">Team Bénévole</button>
           </div>
         </div>
       </div>
@@ -93,11 +91,10 @@
       <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
 
-    <!-- Load Animation Modules -->
-    <script src="../js/animations/preloader.js"></script>
-    <script src="../js/animations/pageTransition.js"></script>
+    <script src="../lib/gsap.min.js"></script>
+    <script src="../lib/ScrollTrigger.min.js"></script>
+    <script src="../lib/SplitText.min.js"></script>
     <script src="../js/animations/textReveal.js"></script>
-    <script src="../js/animations/scrollAnimation.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
   </body>
