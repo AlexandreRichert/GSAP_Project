@@ -5,10 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GSAP Project - Home</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Styles du preloader inline pour éviter le flash -->
+    <style>
+      /* Preloader styles inline pour éviter le flash */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #6d2f2f 0%, #661111 50%, #4a1010 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        overflow: hidden;
+      }
+
+      .preloader::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(236, 229, 68, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(109, 47, 47, 0.3) 0%, transparent 50%);
+        animation: preloaderGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes preloaderGlow {
+        0% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+
+      .preloader-logo {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        z-index: 10000;
+        border-radius: 50%;
+        box-shadow: 
+          0 0 60px rgba(236, 229, 68, 0.3),
+          0 0 100px rgba(236, 229, 68, 0.2),
+          0 10px 40px rgba(0, 0, 0, 0.5);
+        will-change: transform;
+      }
+
+      .preloader-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        filter: brightness(1.1) contrast(1.05);
+      }
+
+      /* Pas de règles pour cacher navbar/hero - GSAP s'en occupe */
+
+      @media (max-width: 768px) {
+        .preloader-logo { width: 120px; height: 120px; }
+      }
+
+      @media (max-width: 480px) {
+        .preloader-logo { width: 100px; height: 100px; }
+      }
+    </style>
   </head>
   <body>
     <!-- Preloader -->
-    <div class="preloader"></div>
+    <div class="preloader">
+      <div class="preloader-logo">
+        <img src="assets/test.webp" alt="Logo" />
+      </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="main-nav">
@@ -36,6 +106,7 @@
         <a href="pages/page4.html" class="dropdown-link page-link">Photos</a>
       </div>
     </div>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
@@ -63,16 +134,19 @@
       </section>
     </section>
 
-    <!-- Distances Section -->
+    <!-- Distances Section avec Carousel Circulaire 3D -->
     <section class="distances-section">
       <h2>Les distances</h2>
       <div class="distances-carousel">
         <div class="distances-track">
-          <div class="distance-tile" data-distance="1k"><span class="distance-label">1 km</span></div>
           <div class="distance-tile" data-distance="5k"><span class="distance-label">5 km</span></div>
           <div class="distance-tile" data-distance="10k"><span class="distance-label">10 km</span></div>
+          <div class="distance-tile" data-distance="12k"><span class="distance-label">12 km</span></div>
           <div class="distance-tile" data-distance="15k"><span class="distance-label">15 km</span></div>
           <div class="distance-tile" data-distance="21k"><span class="distance-label">21 km</span></div>
+          <div class="distance-tile" data-distance="25k"><span class="distance-label">25 km</span></div>
+          <div class="distance-tile" data-distance="30k"><span class="distance-label">30 km</span></div>
+          <div class="distance-tile" data-distance="35k"><span class="distance-label">35 km</span></div>
           <div class="distance-tile" data-distance="42k"><span class="distance-label">42 km</span></div>
         </div>
       </div>
@@ -105,9 +179,12 @@
     <footer class="footer">
       <p>&copy; 2024 GSAP Project. All rights reserved.</p>
     </footer>
+
+    <!-- Scripts GSAP -->
     <script src="lib/gsap.min.js"></script>
     <script src="lib/ScrollTrigger.min.js"></script>
-    <!-- Load Animation Modules -->
+    
+    <!-- Load Animation Modules - PRELOADER EN PREMIER -->
     <script src="js/animations/preloader.js"></script>
     <script src="js/animations/pageTransition.js"></script>
     <script src="js/animations/horizontalScroll.js"></script>
@@ -115,6 +192,8 @@
     <script src="js/animations/scrollAnimation.js"></script>
     <script src="js/animations/pinAnimation.js"></script>
     <script src="js/animations/customCursor.js"></script>
+    <!-- Nouveau script pour le carousel circulaire 3D -->
+    <script src="js/animations/distanceCarousel.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
