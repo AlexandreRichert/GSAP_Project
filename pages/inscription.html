@@ -8,7 +8,11 @@
   </head>
   <body>
     <!-- Preloader -->
-    <div class="preloader"></div>
+    <div class="preloader">
+      <div class="preloader-logo">
+        <img src="../assets/test.webp" alt="Logo" />
+      </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="main-nav">
@@ -39,10 +43,7 @@
 
     <main id="register-app" class="page-container">
       <section class="carousel-section">
-        <h2 class="carousel-title">Nos dossards</h2>
-
         <div class="carousel" aria-label="Carousel dossards">
-          
           <div class="carousel-left-panel">
             <div class="panel-content-wrapper">
               <h3 class="slide-title-vertical">Dossard 1</h3>
@@ -51,7 +52,6 @@
           </div>
 
           <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-
           <div class="carousel-viewport">
             <ul class="carousel-track">
               <li class="carousel-item" data-title="Dossard 1" data-sub="Couleur & design officiels">
@@ -92,6 +92,7 @@
 
     <script src="../lib/gsap.min.js"></script>
     <script src="../lib/ScrollTrigger.min.js"></script>
+    <script src="../lib/SplitText.min.js"></script>
     <script src="../js/animations/preloader.js"></script>
     <script src="../js/animations/pageTransition.js"></script>
     <script src="../js/animations/textReveal.js"></script>

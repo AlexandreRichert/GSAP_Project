@@ -105,13 +105,9 @@
     })
   }
 
-  /**
-   * Ajoute l'indicateur de pause
-   */
   function addPauseIndicator(carousel) {
     const indicator = document.createElement('div')
     indicator.className = 'carousel-pause-indicator'
-    indicator.textContent = 'Pause automatique'
     carousel.appendChild(indicator)
   }
 

@@ -45,7 +45,9 @@ function createTransitionElements() {
 
   // Image du coureur (placeholder - vous remplacerez par votre GIF)
   const runnerImg = document.createElement('img')
-  runnerImg.src = 'assets/running.gif'
+  // Supporter pages situées dans /pages/ en ajustant le chemin
+  const basePath = location.pathname.includes('/pages/') ? '../' : ''
+  runnerImg.src = basePath + 'assets/running.gif'
   runnerImg.alt = 'Coureur'
   runnerImg.onerror = function () {
     // Fallback si l'image n'existe pas : utiliser un emoji
