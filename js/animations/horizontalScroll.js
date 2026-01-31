@@ -1,3 +1,4 @@
+// js/animations/horizontalScroll.js
 class HorizontalCards {
   constructor() {
     this.container = null

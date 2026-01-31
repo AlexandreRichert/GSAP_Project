@@ -1,3 +1,4 @@
+// js/animations/pinAnimation.js
 gsap.registerPlugin(ScrollTrigger)
 
 class ParcourAnimation {
@@ -242,7 +243,6 @@ class ParcourAnimation {
     })
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   new ParcourAnimation()
 })

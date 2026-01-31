@@ -1,8 +1,10 @@
+//js/animations/textReveal.js
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
 class textReveal {
-  constructor() {
-    this.containers = document.querySelectorAll('[data-copy-container]')
+  constructor(root = document) {
+    this.root = root
+    this.containers = Array.from(this.root.querySelectorAll('[data-copy-container]'))
     this.init()
   }
 
@@ -172,8 +174,8 @@ class textReveal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const heroText = document.querySelector('.hero-text')
+function initTextReveal(root = document) {
+  const heroText = root.querySelector('.hero-text')
   if (heroText) {
     const heroElements = heroText.querySelectorAll('h1, p')
     heroElements.forEach((el) => {
@@ -195,5 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  new textReveal()
+  new textReveal(root)
+}
+
+document.addEventListener('DOMContentLoaded', () => initTextReveal(document))
+
+// Re-init when Barba inserts new container
+document.addEventListener('barba:enter', (e) => {
+  const container = e.detail && e.detail.container ? e.detail.container : document
+  initTextReveal(container)
 })
