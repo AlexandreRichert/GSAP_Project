@@ -40,7 +40,9 @@ class ParcourAnimation {
         const pathLen = this.altitudeLine.getTotalLength()
         const pt = this.altitudeLine.getPointAtLength(0)
         gsap.set(this.altitudeMarker, { attr: { cx: pt.x, cy: pt.y } })
-        gsap.set(this.altitudeMarkerLine, { attr: { x1: pt.x, x2: pt.x, y1: 0, y2: this.altitudeLine.ownerSVGElement?.viewBox?.baseVal?.height || 300 } })
+        gsap.set(this.altitudeMarkerLine, {
+          attr: { x1: pt.x, x2: pt.x, y1: 0, y2: this.altitudeLine.ownerSVGElement?.viewBox?.baseVal?.height || 300 },
+        })
       } catch (e) {}
     }
 
