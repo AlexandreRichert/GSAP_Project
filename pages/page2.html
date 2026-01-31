@@ -8,13 +8,16 @@
 </head>
 <body>
     <!-- Preloader (vide pour les pages secondaires, juste le container) -->
-    <div class="preloader" style="display: none;">
+    <div class="preloader">
+      <div class="preloader-logo">
+        <img src="../assets/logoCourse.svg" alt="Logo" />
+      </div>
     </div>
 
     <!-- Navigation -->
     <nav class="main-nav">
         <a href="../index.html" class="nav-logo page-link">
-            <img src="../assets/test.webp" alt="GSAP Logo">
+            <img src="../assets/logoCourse.svg" alt="GSAP Logo">
         </a>
         
         <button class="burger-menu" aria-label="Menu">
@@ -27,15 +30,13 @@
     <!-- Menu déroulant -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
-        <div class="dropdown-content">
-            <a href="contexte.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
-            <a href="inscription.html" class="dropdown-link page-link">S'inscrire</a>
-            <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
-            <a href="page1.html" class="dropdown-link page-link">Les distances</a>
-            <a href="page2.html" class="dropdown-link page-link">After party</a>
-            <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
-            <a href="page4.html" class="dropdown-link page-link">Photos</a>
-        </div>
+      <div class="dropdown-content">
+        <a href="/pages/contexte.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+        <a href="/pages/inscription.html" class="dropdown-link page-link">S'inscrire</a>
+        <a href="/index.html" class="dropdown-link page-link">Le circuit</a>
+        <a href="/index.html" class="dropdown-link page-link">Les distances</a>
+        <a href="/pages/page2.html" class="dropdown-link page-link">After party</a>
+      </div>
     </div>
 
     <!-- Contenu de la page After Party -->
