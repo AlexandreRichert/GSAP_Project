@@ -60,12 +60,8 @@
       duration: 0.6,
       stagger: 0.08,
       ease: 'power2.out',
-      onComplete: () => {
-        console.log("✅ Animation d'entrée terminée")
-      },
+      onComplete: () => {},
     })
-
-    console.log('✅ Carousel initialisé avec succès')
   }
 
   /**
@@ -91,14 +87,12 @@
 
     // Event listeners
     controls.querySelector('.prev').addEventListener('click', () => {
-      console.log('⬅️ Clic précédent')
       stopAutoRotate()
       previousSlide()
       startAutoRotate()
     })
 
     controls.querySelector('.next').addEventListener('click', () => {
-      console.log('➡️ Clic suivant')
       stopAutoRotate()
       nextSlide()
       startAutoRotate()
@@ -126,15 +120,12 @@
    * Tuiles en cercle
    */
   function positionTiles() {
-    console.log('📍 Positionnement initial des tuiles')
     const totalTiles = tiles.length
     const angleStep = 360 / totalTiles
 
     tiles.forEach((tile, index) => {
       const angle = index * angleStep
       const pos = getPositionFromAngle(angle)
-
-      console.log(`Tuile ${index}: angle=${angle}°, x=${pos.x.toFixed(2)}, z=${pos.z.toFixed(2)}`)
 
       gsap.set(tile, {
         x: pos.x,
@@ -185,8 +176,6 @@
     const angleStep = 360 / totalTiles
     const rotationAmount = angleStep
 
-    console.log(`🔄 Rotation vers l'index ${targetIndex}`)
-
     // Pour chaque tuile, on calcule sa nouvelle position
     tiles.forEach((tile, index) => {
       const currentAngle = index * angleStep
@@ -208,7 +197,6 @@
     gsap.delayedCall(CONFIG.transitionDuration, () => {
       isTransitioning = false
       updateActiveTile()
-      console.log('✅ Rotation terminée')
     })
   }
 
@@ -252,7 +240,6 @@
   function startAutoRotate() {
     if (!isAutoRotating || autoRotateInterval) return
 
-    console.log('▶️ Démarrage rotation automatique')
     const rotationInterval = CONFIG.autoRotateSpeed * 1000
     autoRotateInterval = setInterval(() => {
       nextSlide()
@@ -264,7 +251,6 @@
    */
   function stopAutoRotate() {
     if (autoRotateInterval) {
-      console.log('⏸️ Arrêt rotation automatique')
       clearInterval(autoRotateInterval)
       autoRotateInterval = null
     }
@@ -274,7 +260,6 @@
    * Gère l'entrée de la souris (pause)
    */
   function handleMouseEnter() {
-    console.log('🖱️ Souris entrée - pause')
     stopAutoRotate()
     const indicator = document.querySelector('.carousel-pause-indicator')
     if (indicator) {
@@ -290,7 +275,6 @@
    * Gère la sortie de la souris (reprise)
    */
   function handleMouseLeave() {
-    console.log('🖱️ Souris sortie - reprise')
     startAutoRotate()
     const indicator = document.querySelector('.carousel-pause-indicator')
     if (indicator) {
@@ -313,7 +297,6 @@
     } else {
       CONFIG.radius = 350
     }
-    console.log('📐 Resize - nouveau rayon:', CONFIG.radius)
 
     const totalTiles = tiles.length
     const angleStep = 360 / totalTiles
@@ -359,6 +342,4 @@
   })
 
   window.addEventListener('beforeunload', cleanup)
-
-  console.log('📝 Module carousel 3D final chargé')
 })()

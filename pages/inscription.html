@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -41,58 +41,61 @@
       </div>
     </div>
 
-    <main id="register-app" class="page-container">
-      <section class="carousel-section">
-        <div class="carousel" aria-label="Carousel dossards">
-          <div class="carousel-left-panel">
-            <div class="panel-content-wrapper">
-              <h3 class="slide-title-vertical">Dossard 1</h3>
-              <p class="slide-sub-vertical">Couleur & design officiels</p>
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="inscription">
+        <section id="register-app" class="page-container">
+          <section class="carousel-section">
+            <div class="carousel" aria-label="Carousel dossards">
+              <div class="carousel-left-panel">
+                <div class="panel-content-wrapper">
+                  <h3 class="slide-title-vertical">Dossard 1</h3>
+                  <p class="slide-sub-vertical">Couleur & design officiels</p>
+                </div>
+              </div>
+
+              <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+              <div class="carousel-viewport">
+                <ul class="carousel-track">
+                  <li class="carousel-item" data-title="Dossard 1" data-sub="Couleur & design officiels">
+                    <img src="../assets/dossard1.png" alt="Dossard 1" />
+                  </li>
+                  <li class="carousel-item" data-title="Dossard 2" data-sub="Numéro & sponsors">
+                    <img src="../assets/dossard2.png" alt="Dossard 2" />
+                  </li>
+                  <li class="carousel-item" data-title="Dossard 3" data-sub="Edition limitée">
+                    <img src="../assets/dossard3.png" alt="Dossard 3" />
+                  </li>
+                  <li class="carousel-item" data-title="Dossard 4" data-sub="Design finalisé">
+                    <img src="../assets/dossard4.png" alt="Dossard 4" />
+                  </li>
+                  <li class="carousel-item" data-title="Dossard 5" data-sub="Design finalisé">
+                    <img src="../assets/dossard5.png" alt="Dossard 5" />
+                  </li>
+                  <li class="carousel-item" data-title="Dossard 6" data-sub="Design finalisé">
+                    <img src="../assets/dossard6.png" alt="Dossard 6" />
+                  </li>
+                </ul>
+              </div>
+
+              <button class="carousel-btn next" aria-label="Suivant">›</button>
+
+              <div class="carousel-right-panel">
+                <div class="carousel-counter">
+                  <span class="counter-current">01</span>
+                  <span class="counter-separator">/</span>
+                  <span class="counter-total">06</span>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-          <div class="carousel-viewport">
-            <ul class="carousel-track">
-              <li class="carousel-item" data-title="Dossard 1" data-sub="Couleur & design officiels">
-                <img src="../assets/dossard1.png" alt="Dossard 1"/>
-              </li>
-              <li class="carousel-item" data-title="Dossard 2" data-sub="Numéro & sponsors">
-                <img src="../assets/dossard2.png" alt="Dossard 2"/>
-              </li>
-              <li class="carousel-item" data-title="Dossard 3" data-sub="Edition limitée">
-                <img src="../assets/dossard3.png" alt="Dossard 3"/>
-              </li>
-              <li class="carousel-item" data-title="Dossard 4" data-sub="Design finalisé">
-                <img src="../assets/dossard4.png" alt="Dossard 4"/>
-              </li>
-              <li class="carousel-item" data-title="Dossard 5" data-sub="Design finalisé">
-                <img src="../assets/dossard5.png" alt="Dossard 5"/>
-              </li>
-              <li class="carousel-item" data-title="Dossard 6" data-sub="Design finalisé">
-                <img src="../assets/dossard6.png" alt="Dossard 6"/>
-              </li>
-            </ul>
-          </div>
-
-          <button class="carousel-btn next" aria-label="Suivant">›</button>
-
-          <div class="carousel-right-panel">
-            <div class="carousel-counter">
-              <span class="counter-current">01</span>
-              <span class="counter-separator">/</span>
-              <span class="counter-total">06</span>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-    </main>
+          </section>
+        </section>
+      </main>
+    </div>
 
     <script src="../lib/gsap.min.js"></script>
     <script src="../lib/ScrollTrigger.min.js"></script>
     <script src="../lib/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
     <script src="../js/animations/preloader.js"></script>
     <script src="../js/animations/pageTransition.js"></script>
     <script src="../js/animations/textReveal.js"></script>
