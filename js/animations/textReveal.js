@@ -1,4 +1,4 @@
-//js/animations/textReveal.js
+// js/animations/textReveal.js
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
 class textReveal {
@@ -149,7 +149,7 @@ class textReveal {
   }
 
   animateButtons() {
-    const buttons = document.querySelector('.actions')
+    const buttons = this.root.querySelector('.actions') // ✅ MODIF (scope root)
     if (!buttons) return
 
     const btnElements = buttons.querySelectorAll('.btn')
@@ -174,36 +174,48 @@ class textReveal {
   }
 }
 
-function initTextReveal(root = document) {
+/* =====================================================
+   HERO TEXT (inchangé)
+   ===================================================== */
+
+function runHeroText(root = document) {
   const heroText = root.querySelector('.hero-text')
-  if (heroText) {
-    const heroElements = heroText.querySelectorAll('h1, p')
-    heroElements.forEach((el) => {
-      const split = new SplitText(el, {
-        type: 'lines',
-        linesClass: 'line++',
-      })
 
-      gsap.set(split.lines, { y: '120vh', opacity: 0, filter: 'blur(18px)' })
-      gsap.to(split.lines, {
-        y: 0,
-        opacity: 1,
-        filter: 'blur(0px)',
-        duration: 1.3,
-        stagger: 0.13,
-        ease: 'power4.out',
-        delay: 0.25,
-      })
+  if (!heroText) return
+
+  const heroElements = heroText.querySelectorAll('h1, p')
+
+  heroElements.forEach((el) => {
+    const split = new SplitText(el, {
+      type: 'lines',
+      linesClass: 'line++',
     })
-  }
 
+    gsap.set(split.lines, { y: '120vh', opacity: 0, filter: 'blur(18px)' })
+
+    gsap.to(split.lines, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 1.3,
+      stagger: 0.13,
+      ease: 'power4.out',
+      delay: 0.25,
+    })
+  })
+}
+
+/* =====================================================
+   ✅ MODIF — EXPORT POUR BARBA (REMPLACE TOUS LES EVENTS)
+   ===================================================== */
+
+export function initTextReveal(root = document) {
+  runHeroText(root)
   new textReveal(root)
 }
 
-document.addEventListener('DOMContentLoaded', () => initTextReveal(document))
-
-// Re-init when Barba inserts new container
-document.addEventListener('barba:enter', (e) => {
-  const container = e.detail && e.detail.container ? e.detail.container : document
-  initTextReveal(container)
-})
+/* =====================================================
+   ❌ SUPPRIMÉ (remplacé par Barba hooks)
+   document.addEventListener('DOMContentLoaded', ...)
+   document.addEventListener('barba:enter', ...)
+   ===================================================== */
