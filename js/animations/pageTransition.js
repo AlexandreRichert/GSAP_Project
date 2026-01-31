@@ -1,8 +1,8 @@
-// ✅ MODIF — imports des fonctions d’init
 import { initTextReveal } from './textReveal.js'
 import { initParcours } from './pinAnimation.js'
 import { initCarousel } from './distanceCarousel.js'
 import { initHorizontalScroll } from './horizontalScroll.js'
+import { initCountdown } from './countDown.js'
 
 barba.init({
   prefetchIgnore: true,
@@ -106,7 +106,6 @@ barba.init({
         return new Promise((resolve) => {
           document.body.style.overflow = 'hidden'
 
-          // Masquer le preloader pour les transitions
           const preloader = document.querySelector('.preloader')
           if (preloader) {
             preloader.style.display = 'none'
@@ -125,11 +124,10 @@ barba.init({
             overflow: hidden;
           `
 
-          // ===== Clip-path overlay (200vw de large) =====
+          // ===== Clip-path =====
           const clipOverlay = document.createElement('div')
           clipOverlay.className = 'runner-clip-overlay'
 
-          // ===== Runner (GIF) =====
           const runnerContainer = document.createElement('div')
           runnerContainer.className = 'runner-character'
 
@@ -185,12 +183,10 @@ barba.init({
       },
 
       /**
-       * ENTER - Entrée de la nouvelle page
        * Le clip-path continue et révèle la nouvelle page
        */
       enter(data) {
         return new Promise((resolve) => {
-          // Récupérer le container de transition
           const transitionContainer = document.querySelector('.runner-transition-container')
           const clipOverlay = document.querySelector('.runner-clip-overlay')
           const runnerContainer = document.querySelector('.runner-character')
@@ -202,19 +198,12 @@ barba.init({
             return
           }
 
-          // Masquer la nouvelle page au départ
           gsap.set(data.next.container, { opacity: 0 })
 
-          // ===== Animation ENTER =====
           const tl = gsap.timeline({
             onComplete: () => {
-              // Nettoyer
               transitionContainer.remove()
-
-              // Restaurer l'opacité de la nouvelle page
               gsap.set(data.next.container, { opacity: 1 })
-
-              // Restaurer le scroll
               document.body.style.overflow = ''
 
               resolve()
@@ -265,8 +254,8 @@ barba.hooks.afterEnter((data) => {
   initParcours(container)
   initCarousel(container)
   initHorizontalScroll(container)
+  initCountdown(container)
 
-  // ✅ CRUCIAL
   requestAnimationFrame(() => {
     ScrollTrigger.refresh()
   })

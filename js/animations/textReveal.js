@@ -10,153 +10,101 @@ class textReveal {
 
   init() {
     this.containers.forEach((container) => {
+      // center the whole content area so all paragraphs and buttons are centered
+      container.style.textAlign = 'center'
       const paragraphs = Array.from(container.children)
 
-      paragraphs.forEach((el, index) => {
+      paragraphs.forEach((el) => {
         const text = el.textContent.trim()
+        el.style.textAlign = 'center'
 
         if (text.includes('Alors, prêt')) {
           this.createBouncingText(el)
         } else {
-          this.createStaggeredBox(el, index)
+          this.createLetterReveal(el)
         }
       })
     })
-
-    this.animateButtons()
   }
 
-  createStaggeredBox(el, index) {
-    const wrapper = document.createElement('div')
-    wrapper.className = 'text-reveal-box'
-
-    const isRight = index % 2 === 0
-    wrapper.classList.add(isRight ? 'box-right' : 'box-left')
-
-    el.parentNode.insertBefore(wrapper, el)
-    wrapper.appendChild(el)
-
-    const split = new SplitText(el, {
-      type: 'lines',
-      linesClass: 'line++',
-    })
-
-    split.lines.forEach((line) => {
-      const lineWrapper = document.createElement('div')
-      lineWrapper.className = 'line-wrapper'
-      line.parentNode.insertBefore(lineWrapper, line)
-      lineWrapper.appendChild(line)
-    })
-
-    gsap.set(wrapper, {
-      opacity: 0,
-      y: -200,
-    })
-
-    gsap.set(split.lines, {
-      xPercent: isRight ? 100 : -100,
-      opacity: 0,
-    })
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: wrapper,
-        start: 'top 85%',
-        end: 'top 30%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    tl.to(wrapper, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    })
-
-    tl.to(
-      split.lines,
-      {
-        xPercent: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power2.out',
-      },
-      '-=0.3'
-    )
-  }
-
-  createBouncingText(el) {
-    const wrapper = document.createElement('div')
-    wrapper.className = 'text-bounce-wrapper'
-    el.parentNode.insertBefore(wrapper, el)
-    wrapper.appendChild(el)
-
+  createLetterReveal(el) {
     const split = new SplitText(el, {
       type: 'chars,words',
       charsClass: 'char++',
       wordsClass: 'word++',
     })
 
-    gsap.set(wrapper, {
-      y: -300,
+    // start off to the right, invisible
+    gsap.set(split.chars, {
+      xPercent: 100,
       opacity: 0,
+      willChange: 'transform, opacity',
     })
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: wrapper,
-        start: 'top 90%',
+        trigger: el,
+        start: 'top 85%',
         toggleActions: 'play none none none',
       },
     })
 
-    tl.to(wrapper, {
+    tl.to(split.chars, {
+      xPercent: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: { each: 0.03, from: 'start' },
+      ease: 'power2.out',
+    })
+  }
+
+  createBouncingText(el) {
+    // center it
+    el.style.textAlign = 'center'
+
+    // initial state offscreen above
+    gsap.set(el, {
+      y: -300,
+      opacity: 0,
+      willChange: 'transform, opacity',
+    })
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        toggleActions: 'play none none none',
+      },
+    })
+
+    // small delay to wait a bit when reaching bottom
+    tl.to(el, {
       y: 0,
       opacity: 1,
       duration: 1.2,
       ease: 'bounce.out',
+      delay: 0.35,
     })
 
-    tl.to(
-      split.chars,
-      {
-        y: -10,
-        duration: 0.15,
-        stagger: {
-          each: 0.02,
-          from: 'start',
-          ease: 'power1.out',
-        },
-      },
-      '-=0.4'
-    )
-
-    tl.to(
-      split.chars,
-      {
-        y: 0,
-        duration: 0.3,
-        stagger: {
-          each: 0.02,
-          from: 'start',
-          ease: 'elastic.out(1, 0.5)',
-        },
-      },
-      '-=0.3'
-    )
+    // once bounce finished, reveal buttons
+    tl.eventCallback('onComplete', () => this.animateButtons())
   }
 
   animateButtons() {
-    const buttons = this.root.querySelector('.actions') // ✅ MODIF (scope root)
+    const buttons = this.root.querySelector('.actions')
     if (!buttons) return
+
+    // ensure buttons container is centered
+    buttons.style.display = 'flex'
+    buttons.style.justifyContent = 'center'
+    buttons.style.gap = '1rem'
 
     const btnElements = buttons.querySelectorAll('.btn')
 
     gsap.set(btnElements, {
       y: 50,
       opacity: 0,
+      willChange: 'transform, opacity',
     })
 
     gsap.to(btnElements, {
@@ -165,11 +113,6 @@ class textReveal {
       duration: 0.6,
       stagger: 0.15,
       ease: 'back.out(1.7)',
-      scrollTrigger: {
-        trigger: buttons,
-        start: 'top 90%',
-        toggleActions: 'play none none none',
-      },
     })
   }
 }

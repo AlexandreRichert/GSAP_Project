@@ -3,8 +3,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 class ParcourAnimation {
   constructor(root = document) {
-    // ✅ MODIF (déjà présent chez toi, on garde)
-    this.root = root // ✅ MODIF (déjà présent chez toi, on garde)
+    this.root = root
 
     this.path = this.root.querySelector('.parcours-svg-path')
     this.pathBg = this.root.querySelector('.parcours-svg-path-bg')
@@ -12,8 +11,7 @@ class ParcourAnimation {
     this.altitudeMarker = this.root.querySelector('.altitude-marker')
     this.altitudeMarkerLine = this.root.querySelector('.altitude-marker-line')
 
-    // ✅ MODIF — IMPORTANT : query dans root pour Barba
-    this.section = this.root.querySelector('.parcours-section') // ✅ MODIF (avant: document.querySelector)
+    this.section = this.root.querySelector('.parcours-section')
 
     this.pathLength = 0
     this.animation = null
@@ -164,16 +162,6 @@ class ParcourAnimation {
   }
 }
 
-/* =====================================================
-   ✅ MODIF — SUPPRESSION COMPLETE :
-   document.addEventListener('DOMContentLoaded')
-   window.addEventListener('load')
-   ===================================================== */
-
-/* =====================================================
-   ✅ MODIF — EXPORT POUR BARBA
-   ===================================================== */
 export function initParcours(root = document) {
-  // ✅ MODIF
-  new ParcourAnimation(root) // ✅ MODIF
+  new ParcourAnimation(root)
 }
