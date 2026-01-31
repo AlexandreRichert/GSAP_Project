@@ -852,101 +852,98 @@ section {
   box-shadow: 0 22px 54px rgba(2, 6, 23, 0.4);
 }
 
-/* Contexte page spacing and button styles */
+/* ========================================
+   CONTEXTE PAGE - NOUVELLE STRUCTURE
+   ======================================== */
+
 .contexte {
-  padding: 4rem 1.5rem;
+  padding: 4rem 0;
+  background: var(--background-color);
 }
 
 .contexte .container {
-  margin: 0 auto;
-  padding: 2rem 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   background: none;
   border-radius: 0;
 }
 
 .contexte-text h2 {
   font-size: 3.5rem;
-  margin-bottom: 2rem;
-  color: var(--secondary-color);
+  margin-bottom: 4rem;
+  color: var(--light-color);
   line-height: 1.1;
+  text-align: center;
+  padding: 0 2rem;
 }
 
-.content p {
-  margin-bottom: 3.2rem;
-  line-height: 1.5;
-  font-size: 2.1rem;
-  color: var(--text-color);
-  font-weight: 700;
+/* Bloc de section contexte */
+.contexte-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 6rem auto;
+  max-width: 1400px;
+  padding: 0 3rem;
 }
 
-.split-text-wrapper {
-  overflow: hidden;
+.contexte-block-reverse {
+  grid-template-columns: 1fr 1fr;
 }
 
-.split-text {
-  display: inline-block;
-  perspective: 1000;
+.contexte-block-reverse .contexte-image-wrapper {
+  order: 2;
 }
 
-.text-reveal-box {
+.contexte-block-reverse .content {
+  order: 1;
+}
+
+/* Image wrapper avec overflow pour parallax */
+.contexte-image-wrapper {
   position: relative;
-  margin: 3rem 0;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.08);
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.contexte-image {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+  transform: translateY(-10%);
+}
+
+/* Texte des sections */
+.contexte-block .content p {
+  margin-bottom: 0;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  color: var(--text-color);
+  font-weight: 400;
+  text-align: left;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: all 0.3s ease;
 }
 
-.text-reveal-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(236, 229, 68, 0.05) 0%, rgba(109, 47, 47, 0.08) 100%);
-  pointer-events: none;
-}
-
-.text-reveal-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.box-right {
-  margin-left: auto;
-  margin-right: 0;
-  max-width: 80%;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.box-left {
-  margin-right: auto;
-  margin-left: 0;
-  max-width: 80%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.line-wrapper {
-  overflow: hidden;
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.text-bounce-wrapper {
+/* Call to action final */
+.contexte-cta {
   text-align: center;
-  margin: 5rem 0 2rem;
-  padding: 2rem;
+  margin: 8rem auto 3rem;
+  padding: 3rem 2rem;
+  max-width: 800px;
 }
 
-.text-bounce-wrapper p {
+.contexte-cta p {
   font-size: 2.8rem;
   font-weight: 900;
   color: var(--light-color);
@@ -957,24 +954,14 @@ section {
   margin-bottom: 0;
 }
 
-.text-bounce-wrapper .char {
-  display: inline-block;
-  will-change: transform;
-}
-
-.text-reveal-box p {
-  margin-bottom: 0;
-  position: relative;
-  z-index: 1;
-}
-
 /* Buttons */
 .actions {
   display: flex;
   gap: 1rem;
-  margin-top: 1.25rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
   overflow: visible;
+  justify-content: center;
 }
 
 .btn {
@@ -982,7 +969,7 @@ section {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 2rem;
   border-radius: 999px;
   font-weight: 700;
   cursor: pointer;
@@ -992,6 +979,7 @@ section {
     opacity 0.18s ease;
   border: none;
   will-change: transform, opacity;
+  font-size: 1.1rem;
 }
 
 .btn-primary {
@@ -1008,13 +996,14 @@ section {
 .btn-secondary {
   background: transparent;
   color: var(--text-color);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: none;
 }
 
 .btn-secondary:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Page Contexte Specific Styles */
@@ -1029,33 +1018,122 @@ body.page-contexte .contexte .container {
 }
 
 body.page-contexte .contexte-text h2 {
-  color: var(--text-color);
+  color: var(--light-color);
 }
 
 body.page-contexte .content p {
   color: var(--text-color);
 }
 
-body.page-contexte .btn-primary {
-  background: var(--light-color);
-  color: var(--dark-color);
-  box-shadow: 0 10px 28px rgba(109, 47, 47, 0.08);
+/* Responsive pour les sections contexte */
+@media (max-width: 1024px) {
+  .contexte-block,
+  .contexte-block-reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 4rem auto;
+    padding: 0 2rem;
+  }
+
+  .contexte-block-reverse .contexte-image-wrapper,
+  .contexte-block-reverse .content {
+    order: 0;
+  }
+
+  .contexte-image-wrapper {
+    height: 400px;
+  }
+
+  .contexte-text h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .contexte-cta p {
+    font-size: 2.2rem;
+  }
 }
 
-body.page-contexte .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
+@media (max-width: 768px) {
+  .contexte {
+    padding: 2rem 0;
+  }
+
+  .contexte-block {
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .contexte-image-wrapper {
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  .contexte-block .content p {
+    font-size: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .contexte-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contexte-cta {
+    margin: 5rem auto 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .contexte-cta p {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
 }
 
-body.page-contexte .btn-secondary {
-  background: transparent;
-  color: var(--light-color);
-  border: 1px solid var(--light-color);
+@media (max-width: 480px) {
+  .contexte-block {
+    gap: 1.5rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .contexte-image-wrapper {
+    height: 250px;
+  }
+
+  .contexte-block .content p {
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+
+  .contexte-text h2 {
+    font-size: 1.8rem;
+    padding: 0 1rem;
+  }
+
+  .contexte-cta p {
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }
 
-body.page-contexte .btn-secondary:hover {
-  box-shadow: 0 12px 30px rgba(109, 47, 47, 0.06);
+/* Content centering for textReveal */
+.content {
+  text-align: center;
 }
-
 /* ========================================
    COUNTDOWN SECTION
    ======================================== */
@@ -1115,7 +1193,7 @@ body.page-contexte .btn-secondary:hover {
   transform: translateX(-50%);
   width: 200px;
   height: 4px;
-  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  background: linear-gradient(90deg, transparent, var(--light-color), transparent);
   border-radius: 2px;
   box-shadow: 0 0 20px rgba(236, 229, 68, 0.6);
 }
@@ -1201,7 +1279,7 @@ body.page-contexte .btn-secondary:hover {
 .countdown-label {
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--accent-color);
+  color: var(--light-color);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-shadow:
@@ -1212,7 +1290,7 @@ body.page-contexte .btn-secondary:hover {
 .countdown-separator {
   font-size: 6rem;
   font-weight: 900;
-  color: var(--accent-color);
+  color: var(--light-color);
   align-self: center;
   margin-top: -4rem;
   text-shadow:

@@ -5,91 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GSAP Project - Home</title>
     <link rel="stylesheet" href="css/style.css" />
-    <!-- Styles du preloader inline pour éviter le flash -->
-    <style>
-      /* Preloader styles inline pour éviter le flash */
-      .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(135deg, #6d2f2f 0%, #661111 50%, #4a1010 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        overflow: hidden;
-        clip-path: inset(0% 0% 0% 0%);
-      }
-
-      .preloader::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background:
-          radial-gradient(circle at 20% 30%, rgba(236, 229, 68, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 70%, rgba(109, 47, 47, 0.3) 0%, transparent 50%);
-        animation: preloaderGlow 3s ease-in-out infinite alternate;
-      }
-
-      @keyframes preloaderGlow {
-        0% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      .preloader-logo {
-        width: 150px;
-        height: 150px;
-        position: relative;
-        z-index: 10000;
-        border-radius: 50%;
-        box-shadow:
-          0 0 60px rgba(236, 229, 68, 0.3),
-          0 0 100px rgba(236, 229, 68, 0.2),
-          0 10px 40px rgba(0, 0, 0, 0.5);
-        will-change: transform;
-      }
-
-      .preloader-logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        filter: brightness(1.1) contrast(1.05);
-      }
-
-      @media (max-width: 768px) {
-        .preloader-logo {
-          width: 120px;
-          height: 120px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .preloader-logo {
-          width: 100px;
-          height: 100px;
-        }
-      }
-    </style>
   </head>
   <body>
-    <!-- Preloader (HORS du barba-wrapper) -->
     <div class="preloader">
       <div class="preloader-logo">
         <img src="assets/logoCourse.svg" width="60" height="60" alt="Logo" />
       </div>
     </div>
 
-    <!-- Navigation (HORS du barba-wrapper) -->
     <nav class="main-nav">
       <a href="/index.html" class="nav-logo page-link">
         <img src="assets/logoCourse.svg" width="80" height="80" alt="GSAP Logo" />
@@ -102,7 +25,6 @@
       </button>
     </nav>
 
-    <!-- Menu déroulant (HORS du barba-wrapper) -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
       <div class="dropdown-content">
@@ -116,11 +38,8 @@
       </div>
     </div>
 
-    <!-- ===== BARBA WRAPPER (data-barba="wrapper") ===== -->
     <div data-barba="wrapper">
-      <!-- ===== BARBA CONTAINER - Le contenu qui change ===== -->
       <main data-barba="container" data-barba-namespace="home">
-        <!-- Hero Section -->
         <section class="hero">
           <div class="hero-content">
             <div class="hero-text">

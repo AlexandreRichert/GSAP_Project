@@ -1,9 +1,7 @@
 // js/animations/horizontalScroll.js
-
 class HorizontalCards {
   constructor(root = document) {
-    // ✅ MODIF (root pour Barba scope)
-    this.root = root // ✅ MODIF
+    this.root = root
 
     this.container = null
     this.cardsStack = null
@@ -19,14 +17,11 @@ class HorizontalCards {
     this.init()
   }
 
-  /**
-   * Initialise tous les composants de l'animation
-   */
   init() {
     gsap.registerPlugin(ScrollTrigger)
 
     this.setupElements()
-    if (!this.container) return // ✅ MODIF sécurité
+    if (!this.container) return
 
     this.setupInitialStates()
     this.setupCardHover()
@@ -37,9 +32,7 @@ class HorizontalCards {
    * Récupère les éléments DANS LE CONTAINER BARBA
    */
   setupElements() {
-    // ❌ document.querySelector(...)
-    // ✅ scope local
-    this.container = this.root.querySelector('.partenaires-section') // ✅ MODIF
+    this.container = this.root.querySelector('.partenaires-section')
 
     if (!this.container) return
 
@@ -185,10 +178,6 @@ class HorizontalCards {
   }
 }
 
-/* =====================================================
-   ✅ MODIF — EXPORT POUR BARBA
-   ===================================================== */
-
 export function initHorizontalScroll(root = document) {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP or ScrollTrigger not found for HorizontalCards')
@@ -197,8 +186,3 @@ export function initHorizontalScroll(root = document) {
 
   new HorizontalCards(root)
 }
-
-/* =====================================================
-   ❌ SUPPRIMÉ
-   window.addEventListener('load', ...)
-   ===================================================== */

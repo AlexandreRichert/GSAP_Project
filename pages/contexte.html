@@ -10,13 +10,13 @@
 
     <div class="preloader">
       <div class="preloader-logo">
-        <img src="../assets/courseLogo.svg" alt="Logo" />
+        <img src="../assets/logoCourse.svg" alt="Logo" />
       </div>
     </div>
 
     <nav class="main-nav">
       <a href="/index.html" class="nav-logo page-link">
-        <img src="../assets/courseLogo.svg" alt="GSAP Logo" />
+        <img src="../assets/logoCourse.svg" alt="GSAP Logo" />
       </a>
 
       <button class="burger-menu" aria-label="Menu">
@@ -26,7 +26,6 @@
       </button>
     </nav>
 
-    <!-- Menu déroulant -->
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
       <div class="dropdown-content">
@@ -48,39 +47,50 @@
             <div class="contexte-text">
               <h2 class="split-text">Pourquoi cette course ?</h2>
 
-              <div class="content" data-copy-container>
-                <p>
-                  Le marathon est une distance à part. Mythique, exigeante, symbolique. C'est souvent un objectif de
-                  longue haleine, qui demande du temps, de l'engagement et une vraie préparation.
-                </p>
-                <p>
-                  En tant que coureuse du dimanche, courir mon premier marathon est déjà une aventure forte. Mais
-                  j'avais envie d'aller plus loin : transformer cette course en un moment de partage, et la rendre
-                  inoubliable en la vivant entourée de ceux qui comptent.
-                </p>
-                <p>
-                  La course des copains, c'est avant tout une invitation. Une invitation à découvrir (ou redécouvrir) la
-                  course à pied, une passion qui m'a surprise ces dernières années, et à en partager un morceau, chacun
-                  à son rythme.
-                </p>
-                <p>
-                  L'idée est simple : permettre à chacun de se challenger à son niveau. Que vous couriez 7 km ou
-                  davantage, que vous soyez débutant ou habitué des baskets, l'objectif est le même : se dépasser,
-                  s'encourager, et créer ensemble un souvenir fort.
-                </p>
-                <p>
-                  Chaque participant peut s'inscrire sur la distance de son choix. L'ensemble des coureurs sera réparti
-                  sur la distance marathon afin que l'aventure soit collective, vivante, et portée tout au long du
-                  parcours par des énergies nouvelles.
-                </p>
-                <p>
-                  La course se déroulera au cœur du lac de Bordeaux, sur une boucle de 7 km, idéale pour profiter de
-                  ravitaillements réguliers et de toilettes publiques. Des bénévoles à vélo seront également présents
-                  pour veiller au bon déroulement de l'événement.
-                </p>
-                <p>
-                  La course des copains, c'est un marathon… mais surtout une histoire de liens, de partage et de copain
-                </p>
+              <div class="contexte-block" data-parallax-section>
+                <div class="contexte-image-wrapper" data-parallax-image>
+                  <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=1200&q=80" alt="Coureurs en action" class="contexte-image" />
+                </div>
+                <div class="content" data-copy-container>
+                  <p>
+                    Le marathon est une distance à part. Mythique, exigeante, symbolique. C'est souvent un objectif de longue haleine, qui demande du temps, de l'engagement et une vraie préparation.
+                    En tant que coureuse du dimanche, courir mon premier marathon est déjà une aventure forte. Mais
+                    j'avais envie d'aller plus loin : transformer cette course en un moment de partage, et la rendre
+                    inoubliable en la vivant entourée de ceux qui comptent.
+                  </p>
+                </div>
+              </div>
+
+              <div class="contexte-block contexte-block-reverse" data-parallax-section>
+                <div class="contexte-image-wrapper" data-parallax-image>
+                  <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1200&q=80" alt="Amis ensemble" class="contexte-image" />
+                </div>
+                <div class="content" data-copy-container>
+                  <p>
+                    La course des copains, c'est avant tout une invitation. Une invitation à découvrir (ou redécouvrir) la course à pied, une passion qui m'a surprise ces dernières années, et à en partager un morceau, chacun à son rythme.
+                    L'idée est simple : permettre à chacun de se challenger à son niveau. Que vous couriez 7 km ou davantage, que vous soyez débutant ou habitué des baskets, l'objectif est le même : se dépasser, s'encourager, et créer ensemble un souvenir fort.
+                     Chaque participant peut s'inscrire sur la distance de son choix. L'ensemble des coureurs sera réparti
+                    sur la distance marathon afin que l'aventure soit collective, vivante, et portée tout au long du
+                    parcours par des énergies nouvelles.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Section 3: Le cadre idéal -->
+              <div class="contexte-block" data-parallax-section>
+                <div class="contexte-image-wrapper" data-parallax-image>
+                  <img src="../assets/bordeauxLac.jpg" alt="Bordeaux Lac" class="contexte-image" />
+                </div>
+                <div class="content" data-copy-container>
+                  <p>
+                    La course se déroulera au cœur du lac de Bordeaux, sur une boucle de 7 km, idéale pour profiter de ravitaillements réguliers et de toilettes publiques. Des bénévoles à vélo seront également présents pour veiller au bon déroulement de l'événement.
+                    La course des copains, c'est un marathon… mais surtout une histoire de liens, de partage et de copains
+                  </p>
+                </div>
+              </div>
+
+              <!-- Call to action final -->
+              <div class="contexte-cta" data-copy-container>
                 <p>Alors, prêt·e à tenter l'aventure ?</p>
               </div>
 
@@ -101,10 +111,10 @@
     <script src="../lib/gsap.min.js"></script>
     <script src="../lib/ScrollTrigger.min.js"></script>
     <script src="../lib/SplitText.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
     <script src="../js/animations/preloader.js"></script>
     <script type="module" src="../js/animations/pageTransition.js"></script>
-    <script  type="module" src="../js/animations/textReveal.js"></script>
+    <script type="module" src="../js/animations/textReveal.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
   </body>

@@ -1,11 +1,5 @@
 // js/animations/distanceCarousel.js
-
-'use strict' // ✅ MODIF (on retire l’IIFE mais on garde le strict mode)
-
-/* =====================================================
-   TON CODE ORIGINAL 100% CONSERVÉ
-   ===================================================== */
-
+'use strict'
 const CONFIG = {
   autoRotateSpeed: 3,
   radius: 350,
@@ -19,12 +13,8 @@ let isAutoRotating = true
 let autoRotateInterval = null
 let isTransitioning = false
 
-/**
- * Initialisation
- */
 function initCarouselInternal(root = document) {
-  // ✅ MODIF (renommée pour export propre)
-  const carousel = root.querySelector('.distances-carousel') // ✅ MODIF (avant: document)
+  const carousel = root.querySelector('.distances-carousel')
   if (!carousel) {
     console.error('❌ .distances-carousel non trouvé')
     return
@@ -68,18 +58,12 @@ function initCarouselInternal(root = document) {
     ease: 'power2.out',
   })
 
-  // ✅ MODIF — resize géré ici (plus global)
   let resizeTimeout
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout)
     resizeTimeout = setTimeout(handleResize, 250)
   })
 }
-
-/* =====================================================
-   TOUT TON CODE (inchangé)
-   ===================================================== */
-
 function addCarouselControls(carousel) {
   const controls = document.createElement('div')
   controls.className = 'carousel-controls'
@@ -227,16 +211,6 @@ function handleResize() {
   updateActiveTile()
 }
 
-/* =====================================================
-   ✅ MODIF — SUPPRIMÉ :
-   IIFE
-   DOMContentLoaded
-   beforeunload
-   ===================================================== */
-
-/* =====================================================
-   ✅ MODIF — EXPORT POUR BARBA
-   ===================================================== */
 export function initCarousel(root = document) {
   initCarouselInternal(root)
 }

@@ -1,14 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.querySelector('.carousel-track')
-  const items = Array.from(document.querySelectorAll('.carousel-item'))
-  const prevBtn = document.querySelector('.carousel-btn.prev')
-  const nextBtn = document.querySelector('.carousel-btn.next')
-  const carousel = document.querySelector('.carousel')
+// Transforme ce fichier en module exportable : export function initDossardCarousel(root = document)
+// La fonction initialise le carousel à l'intérieur de `root` (utile pour Barba.js)
+export function initDossardCarousel(root = document) {
+  const track = root.querySelector('.carousel-track')
+  const items = Array.from(root.querySelectorAll('.carousel-item'))
+  const prevBtn = root.querySelector('.carousel-btn.prev')
+  const nextBtn = root.querySelector('.carousel-btn.next')
+  const carousel = root.querySelector('.carousel')
 
-  const titleEl = document.querySelector('.slide-title-vertical')
-  const subEl = document.querySelector('.slide-sub-vertical')
-  const counterCurrent = document.querySelector('.counter-current')
-  const counterTotal = document.querySelector('.counter-total')
+  const titleEl = root.querySelector('.slide-title-vertical')
+  const subEl = root.querySelector('.slide-sub-vertical')
+  const counterCurrent = root.querySelector('.counter-current')
+  const counterTotal = root.querySelector('.counter-total')
 
   let currentIndex = 0
   let autoplayTimer = null
@@ -217,5 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlides()
   startAutoplay()
 
-  console.log('Carousel simple (HTML) initialisé avec succès! ✨')
-})
+  // Retourne un objet utile pour debug si nécessaire
+  return {
+    goTo,
+    next,
+    prev,
+  }
+}

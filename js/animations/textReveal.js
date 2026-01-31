@@ -6,11 +6,11 @@ class textReveal {
     this.root = root
     this.containers = Array.from(this.root.querySelectorAll('[data-copy-container]'))
     this.init()
+    this.initParallax()
   }
 
   init() {
     this.containers.forEach((container) => {
-      // center the whole content area so all paragraphs and buttons are centered
       container.style.textAlign = 'center'
       const paragraphs = Array.from(container.children)
 
@@ -21,88 +21,146 @@ class textReveal {
         if (text.includes('Alors, prêt')) {
           this.createBouncingText(el)
         } else {
-          this.createLetterReveal(el)
+          this.createLetterRevealScrub(el)
         }
       })
     })
+
+    this.animateButtons()
   }
 
-  createLetterReveal(el) {
+  initParallax() {
+    const parallaxImages = this.root.querySelectorAll('[data-parallax-image]')
+
+    parallaxImages.forEach((imageWrapper) => {
+      const image = imageWrapper.querySelector('.contexte-image')
+
+      if (!image) return
+
+      gsap.to(image, {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: imageWrapper,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      })
+    })
+
+    const parallaxSections = this.root.querySelectorAll('[data-parallax-section]')
+
+    parallaxSections.forEach((section) => {
+      const imageWrapper = section.querySelector('[data-parallax-image]')
+
+      if (imageWrapper) {
+        gsap.fromTo(
+          imageWrapper,
+          {
+            opacity: 0,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 75%',
+              end: 'top 40%',
+              scrub: 0.8,
+            },
+          }
+        )
+      }
+    })
+
+    const ctaElement = this.root.querySelector('.contexte-cta')
+    if (ctaElement) {
+      gsap.fromTo(
+        ctaElement,
+        {
+          scale: 0.8,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: ctaElement,
+            start: 'top 80%',
+            end: 'top 50%',
+            scrub: 0.6,
+          },
+        }
+      )
+    }
+  }
+
+  createLetterRevealScrub(el) {
     const split = new SplitText(el, {
       type: 'chars,words',
       charsClass: 'char++',
       wordsClass: 'word++',
     })
 
-    // start off to the right, invisible
     gsap.set(split.chars, {
       xPercent: 100,
       opacity: 0,
       willChange: 'transform, opacity',
     })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    tl.to(split.chars, {
+    gsap.to(split.chars, {
       xPercent: 0,
       opacity: 1,
-      duration: 0.6,
-      stagger: { each: 0.03, from: 'start' },
+      stagger: { each: 0.02, from: 'start' },
       ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 80%',
+        end: 'top 40%',
+        scrub: 0.5,
+      },
     })
   }
 
   createBouncingText(el) {
-    // center it
     el.style.textAlign = 'center'
 
-    // initial state offscreen above
     gsap.set(el, {
-      y: -300,
+      y: -200,
       opacity: 0,
       willChange: 'transform, opacity',
     })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 92%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    // small delay to wait a bit when reaching bottom
-    tl.to(el, {
+    gsap.to(el, {
       y: 0,
       opacity: 1,
-      duration: 1.2,
       ease: 'bounce.out',
-      delay: 0.35,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 90%',
+        end: 'top 45%',
+        scrub: 1.2,
+      },
     })
-
-    // once bounce finished, reveal buttons
-    tl.eventCallback('onComplete', () => this.animateButtons())
   }
 
   animateButtons() {
     const buttons = this.root.querySelector('.actions')
     if (!buttons) return
 
-    // ensure buttons container is centered
     buttons.style.display = 'flex'
     buttons.style.justifyContent = 'center'
     buttons.style.gap = '1rem'
 
     const btnElements = buttons.querySelectorAll('.btn')
 
+    // État initial : boutons en bas et invisibles
     gsap.set(btnElements, {
-      y: 50,
+      y: 120,
       opacity: 0,
       willChange: 'transform, opacity',
     })
@@ -110,16 +168,17 @@ class textReveal {
     gsap.to(btnElements, {
       y: 0,
       opacity: 1,
-      duration: 0.6,
-      stagger: 0.15,
+      stagger: 0.12,
       ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: buttons,
+        start: 'top 95%',
+        end: 'top 55%',
+        scrub: 1,
+      },
     })
   }
 }
-
-/* =====================================================
-   HERO TEXT (inchangé)
-   ===================================================== */
 
 function runHeroText(root = document) {
   const heroText = root.querySelector('.hero-text')
@@ -148,17 +207,7 @@ function runHeroText(root = document) {
   })
 }
 
-/* =====================================================
-   ✅ MODIF — EXPORT POUR BARBA (REMPLACE TOUS LES EVENTS)
-   ===================================================== */
-
 export function initTextReveal(root = document) {
   runHeroText(root)
   new textReveal(root)
 }
-
-/* =====================================================
-   ❌ SUPPRIMÉ (remplacé par Barba hooks)
-   document.addEventListener('DOMContentLoaded', ...)
-   document.addEventListener('barba:enter', ...)
-   ===================================================== */
