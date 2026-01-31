@@ -10,6 +10,7 @@ class ParcourAnimation {
     this.pin = this.root.querySelector('.parcours-pin')
     this.altitudeMarker = this.root.querySelector('.altitude-marker')
     this.altitudeMarkerLine = this.root.querySelector('.altitude-marker-line')
+    this.altitudeLine = this.root.querySelector('.altitude-line')
 
     this.section = this.root.querySelector('.parcours-section')
 
@@ -31,6 +32,16 @@ class ParcourAnimation {
     if (!this.path) {
       console.warn('Parcours SVG path introuvable')
       return
+    }
+
+    // Si la ligne d'altitude existe, initialiser son état (position du marqueur)
+    if (this.altitudeLine && this.altitudeMarker) {
+      try {
+        const pathLen = this.altitudeLine.getTotalLength()
+        const pt = this.altitudeLine.getPointAtLength(0)
+        gsap.set(this.altitudeMarker, { attr: { cx: pt.x, cy: pt.y } })
+        gsap.set(this.altitudeMarkerLine, { attr: { x1: pt.x, x2: pt.x, y1: 0, y2: this.altitudeLine.ownerSVGElement?.viewBox?.baseVal?.height || 300 } })
+      } catch (e) {}
     }
 
     this.init()

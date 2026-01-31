@@ -17,7 +17,9 @@ export function initDossardCarousel(root = document) {
   const AUTOPLAY_DELAY = 4500
 
   if (!track || items.length === 0) {
-    console.error('Carousel: éléments manquants')
+    // Pas d'éléments pour ce carousel dans le `root` fourni -> on quitte
+    // silencieusement (évite le spam de la console lors de navigations
+    // Barba sur d'autres pages qui n'ont pas ce carousel).
     return
   }
 
