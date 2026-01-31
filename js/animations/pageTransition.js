@@ -30,6 +30,15 @@ barba.init({
           const deltaX = navLogoRect.left - preloaderLogoRect.left + (navLogoRect.width - preloaderLogoRect.width) / 2
           const deltaY = navLogoRect.top - preloaderLogoRect.top + (navLogoRect.height - preloaderLogoRect.height) / 2
 
+          // Calculer un ratio d'échelle plus précis et légèrement plus petit
+          const widthRatio = navLogoRect.width / preloaderLogoRect.width
+          const heightRatio = navLogoRect.height / preloaderLogoRect.height
+          // Prendre le plus petit ratio pour garder les proportions, puis réduire un peu plus (0.9)
+          const scaleRatio = Math.min(widthRatio, heightRatio) * 0.9
+
+          // S'assurer que la transformation s'effectue depuis le centre
+          gsap.set(preloaderLogo, { transformOrigin: 'center center' })
+
           const tl = gsap.timeline({
             onComplete: () => {
               preloader.style.display = 'none'
@@ -50,7 +59,7 @@ barba.init({
             {
               x: deltaX,
               y: deltaY,
-              scale: navLogoRect.width / preloaderLogoRect.width,
+              scale: scaleRatio,
               duration: 0.8,
               ease: 'power2.inOut',
             },
@@ -69,6 +78,12 @@ barba.init({
             '-=0.3'
           )
 
+          // 5. Clip-path du background vers le haut
+          tl.to(preloader, {
+            clipPath: 'inset(0% 0% 100% 0%)',
+            duration: 0.8,
+            ease: 'power2.inOut',
+          })
           // 4. Disparition du logo du preloader
           tl.to(
             preloaderLogo,
@@ -78,13 +93,6 @@ barba.init({
             },
             '-=0.2'
           )
-
-          // 5. Clip-path du background vers le haut
-          tl.to(preloader, {
-            clipPath: 'inset(0% 0% 100% 0%)',
-            duration: 0.8,
-            ease: 'power2.inOut',
-          })
         })
       },
 
@@ -114,59 +122,15 @@ barba.init({
           // ===== Clip-path overlay (200vw de large) =====
           const clipOverlay = document.createElement('div')
           clipOverlay.className = 'runner-clip-overlay'
-          clipOverlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: -200vw;
-            width: 200vw;
-            height: 100vh;
-            background: linear-gradient(90deg, 
-              var(--background-color) 0%, 
-              #7a2626 50%, 
-              var(--background-color) 100%
-            );
-            z-index: 9999;
-            pointer-events: none;
-            box-shadow: 
-              inset -20px 0 60px rgba(0, 0, 0, 0.5),
-              inset 20px 0 60px rgba(0, 0, 0, 0.5);
-          `
 
           // ===== Runner (GIF) =====
           const runnerContainer = document.createElement('div')
           runnerContainer.className = 'runner-character'
-          runnerContainer.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: -200px;
-            transform: translateY(-50%);
-            width: 150px;
-            height: 150px;
-            z-index: 10000;
-            pointer-events: none;
-          `
 
           const runnerImg = document.createElement('img')
           runnerImg.src = '../assets/running.gif'
           runnerImg.alt = 'Runner'
-          runnerImg.style.cssText = `
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-          `
-
-          // Fallback emoji si GIF non disponible
-          runnerImg.onerror = function () {
-            this.style.display = 'none'
-            const emoji = document.createElement('div')
-            emoji.textContent = '🏃'
-            emoji.style.cssText = `
-              font-size: 120px;
-              filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-            `
-            runnerContainer.appendChild(emoji)
-          }
+          runnerImg.className = 'runner-gif'
 
           runnerContainer.appendChild(runnerImg)
           transitionContainer.appendChild(clipOverlay)

@@ -261,6 +261,40 @@ body::-webkit-scrollbar {
   filter: brightness(1.1) contrast(1.05);
 }
 
+/* Page transition */
+
+.runner-clip-overlay {
+  position: fixed;
+  top: 0;
+  left: -200vw;
+  width: 200vw;
+  height: 100vh;
+  background: linear-gradient(90deg, var(--background-color) 0%, #7a2626 50%, var(--background-color) 100%);
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow:
+    inset -20px 0 60px rgba(0, 0, 0, 0.5),
+    inset 20px 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.runner-character {
+  position: fixed;
+  top: 50%;
+  left: -200px;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 150px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.runner-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .preloader-logo {
@@ -276,52 +310,6 @@ body::-webkit-scrollbar {
   }
 }
 
-.page-transition-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: var(--background-color);
-  z-index: 9998;
-  pointer-events: none;
-  transform: translateX(-100%);
-  opacity: 0;
-  display: none;
-  will-change: transform;
-}
-
-/* Runner Character */
-.page-transition-runner {
-  position: fixed;
-  top: 50%;
-  left: 0;
-  transform: translate(-150%, -50%);
-  width: 200px;
-  height: 200px;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0;
-  display: none;
-  will-change: transform;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-transition-runner img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-}
-
-.runner-emoji {
-  font-size: 120px;
-  line-height: 1;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-  animation: runnerBounce 0.4s ease-in-out infinite;
-}
-
 @keyframes runnerBounce {
   0%,
   100% {
@@ -330,47 +318,6 @@ body::-webkit-scrollbar {
   50% {
     transform: translateY(-10px);
   }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .page-transition-runner {
-    width: 150px;
-    height: 150px;
-  }
-
-  .runner-emoji {
-    font-size: 90px;
-  }
-}
-
-@media (max-width: 480px) {
-  .page-transition-runner {
-    width: 120px;
-    height: 120px;
-  }
-
-  .runner-emoji {
-    font-size: 70px;
-  }
-}
-
-.page-transition-runner.moving {
-  filter: blur(2px);
-}
-
-.page-transition-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at 30% 50%, rgba(236, 229, 68, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 30%, rgba(109, 47, 47, 0.15) 0%, transparent 50%);
-  opacity: 0.6;
-  animation: particlesFloat 2s ease-in-out infinite alternate;
 }
 
 @keyframes particlesFloat {
@@ -493,15 +440,6 @@ section {
 
 .map-container h3 {
   text-align: center;
-}
-.parcours-map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.85) saturate(1.1);
 }
 
 .parcours-svg-overlay {
