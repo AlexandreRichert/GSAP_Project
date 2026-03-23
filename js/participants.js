@@ -5,24 +5,17 @@
   'use strict'
 
   // Configuration
-  const dossardDesigns = {
-    'design-1': { name: 'Design Classique', image: '/assets/dossard1.png' },
-    'design-2': { name: 'Design Moderne', image: '/assets/dossard2.png' },
-    'design-3': { name: 'Design Édition Limitée', image: '/assets/dossard3.png' },
-    'design-4': { name: 'Design Sport', image: '/assets/dossard4.png' },
-    'design-5': { name: 'Design Fun', image: '/assets/dossard5.png' },
-    'design-6': { name: 'Design Premium', image: '/assets/dossard6.png' },
-  }
+  const dossardDesigns = {}
 
   const distanceLabels = {
     '5k': '5 km',
+    '7k': '7 km',
     '10k': '10 km',
     '12k': '12 km',
     '15k': '15 km',
+    '18k': '18 km',
     '21k': '21 km (Semi)',
-    '25k': '25 km',
     '30k': '30 km',
-    '35k': '35 km',
     '42k': '42 km (Marathon)',
   }
 
@@ -39,11 +32,11 @@
   // Initialize
   document.addEventListener('DOMContentLoaded', init)
 
-  function init() {
+  async function init() {
     // Get URL params
     const params = new URLSearchParams(window.location.search)
-    currentDistance = params.get('distance') || '5k'
-    currentDossardId = params.get('dossard') || 'design-1'
+    currentDistance = normalizeDistance(params.get('distance') || '5k')
+    currentDossardId = params.get('dossard') || ''
 
     // Cache DOM elements
     registrationSection = document.getElementById('registration-section')
@@ -52,7 +45,8 @@
     previewModal = document.getElementById('preview-modal')
     dossardCanvas = document.getElementById('dossard-canvas')
 
-    // Display selected info
+    // Load dossards catalog first, then display selected info
+    await loadDossardCatalog()
     displaySelectedInfo()
 
     // Setup form
@@ -68,17 +62,39 @@
     loadParticipants()
   }
 
+  function normalizeDistance(raw) {
+    const value = String(raw || '')
+      .toLowerCase()
+      .trim()
+    const match = value.match(/(\d+)/)
+    return match ? `${match[1]}k` : '5k'
+  }
+
+  async function loadDossardCatalog() {
+    try {
+      const res = await fetch('/api/dossards')
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const items = await res.json()
+      if (!Array.isArray(items)) return
+      items.forEach((item) => {
+        if (item && item.id) dossardDesigns[item.id] = item
+      })
+    } catch (error) {
+      console.warn('Impossible de charger le catalogue dossards:', error)
+    }
+  }
+
   function displaySelectedInfo() {
     const distanceEl = document.getElementById('display-distance')
     const dossardEl = document.getElementById('display-dossard')
 
     if (distanceEl) {
-      distanceEl.textContent = distanceLabels[currentDistance] || currentDistance
+      distanceEl.textContent = distanceLabels[currentDistance] || currentDistance.replace('k', ' km')
     }
 
     if (dossardEl) {
       const design = dossardDesigns[currentDossardId]
-      dossardEl.textContent = design ? design.name : currentDossardId
+      dossardEl.textContent = design ? design.name : 'Dossard sélectionné'
     }
   }
 
@@ -257,7 +273,7 @@
 
     let filtered = participants
     if (currentFilter === 'current') {
-      filtered = participants.filter((p) => p.distance === currentDistance)
+      filtered = participants.filter((p) => normalizeDistance(p.distance) === currentDistance)
     }
 
     if (filtered.length === 0) {
@@ -305,7 +321,8 @@
 
   function createParticipantCard(participant) {
     const design = dossardDesigns[participant.dossardId] || { name: 'Design inconnu' }
-    const distanceLabel = distanceLabels[participant.distance] || participant.distance
+    const normalizedDistance = normalizeDistance(participant.distance)
+    const distanceLabel = distanceLabels[normalizedDistance] || normalizedDistance.replace('k', ' km')
 
     return `
       <div class="participant-card" data-id="${participant.id}">
@@ -416,41 +433,17 @@
     const img = new Image()
     img.crossOrigin = 'anonymous'
     img.onload = () => {
-      // Draw background image
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      // Render only the original dossard visual without text overlays.
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = '#111'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Overlay with text
-      const distanceLabel = distanceLabels[participant.distance] || participant.distance
-
-      // Semi-transparent overlay for text readability
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.3)'
-      ctx.fillRect(0, canvas.height - 100, canvas.width, 100)
-
-      // Name
-      ctx.fillStyle = '#ffffff'
-      ctx.font = 'bold 28px "Arial", sans-serif'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
-      ctx.shadowBlur = 4
-      ctx.shadowOffsetX = 2
-      ctx.shadowOffsetY = 2
-      ctx.fillText(participant.name.toUpperCase(), canvas.width / 2, canvas.height - 70)
-
-      // Number
-      ctx.font = 'bold 36px "Arial", sans-serif'
-      ctx.fillText(`N° ${participant.number}`, canvas.width / 2, canvas.height - 30)
-
-      // Distance badge (top right)
-      ctx.shadowBlur = 0
-      ctx.fillStyle = 'rgba(236, 229, 68, 0.9)'
-      const badgeWidth = ctx.measureText(distanceLabel).width + 20
-      ctx.fillRect(canvas.width - badgeWidth - 10, 10, badgeWidth, 30)
-
-      ctx.fillStyle = '#1a1a1a'
-      ctx.font = 'bold 16px "Arial", sans-serif'
-      ctx.textAlign = 'right'
-      ctx.fillText(distanceLabel, canvas.width - 20, 28)
+      const ratio = Math.min(canvas.width / img.width, canvas.height / img.height)
+      const drawWidth = img.width * ratio
+      const drawHeight = img.height * ratio
+      const x = (canvas.width - drawWidth) / 2
+      const y = (canvas.height - drawHeight) / 2
+      ctx.drawImage(img, x, y, drawWidth, drawHeight)
     }
 
     img.onerror = () => {
