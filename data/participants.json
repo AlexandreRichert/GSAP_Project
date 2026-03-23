@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1769275629331",
+    "distance": "5k",
+    "dossardId": "5k-1",
+    "name": "Jean Dupont",
+    "number": "42",
+    "ts": "2026-01-24T17:27:09.333Z"
+  },
+  {
+    "id": "1769275927922",
+    "distance": "5k",
+    "dossardId": "5k-1",
+    "name": "test",
+    "number": "46",
+    "ts": "2026-01-24T17:32:07.922Z"
+  },
+  {
+    "id": "1772722385889",
+    "distance": "10k",
+    "dossardId": "design-1",
+    "name": "TestUser",
+    "number": "123",
+    "ts": "2026-03-05T14:53:05.890Z"
+  },
+  {
+    "id": "1772723016468",
+    "distance": "21k",
+    "dossardId": "design-3",
+    "name": "CoureurTest",
+    "number": "999",
+    "ts": "2026-03-05T15:03:36.469Z"
+  },
+  {
+    "id": "1772723284525",
+    "distance": "10k",
+    "dossardId": "design-1",
+    "name": "flash",
+    "number": "31",
+    "ts": "2026-03-05T15:08:04.526Z"
+  },
+  {
+    "id": "1772723568043",
+    "distance": "21k",
+    "dossardId": "design-1",
+    "name": "flash mcrunner",
+    "number": "12",
+    "ts": "2026-03-05T15:12:48.043Z"
+  },
+  {
+    "id": "1772995331711",
+    "distance": "10k",
+    "dossardId": "design-1",
+    "name": "fast and not furious",
+    "number": "16",
+    "ts": "2026-03-08T18:42:11.713Z"
+  },
+  {
+    "id": "1773480105105",
+    "distance": "12k",
+    "dossardId": "design-4",
+    "name": "delphine",
+    "number": "10",
+    "ts": "2026-03-14T09:21:45.112Z"
+  }
+]

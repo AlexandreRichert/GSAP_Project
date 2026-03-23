@@ -27,16 +27,80 @@
     <div class="menu-overlay"></div>
     <div class="dropdown-menu">
         <div class="dropdown-content">
-            <a href="contexte.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
-            <a href="inscription.html" class="dropdown-link page-link">S'inscrire</a>
-            <a href="page1.html" class="dropdown-link page-link">Le circuit</a>
-            <a href="page1.html" class="dropdown-link page-link">Les distances</a>
-            <a href="page2.html" class="dropdown-link page-link">After party</a>
-            <a href="page3.html" class="dropdown-link page-link">Bénévoles</a>
-            <a href="page4.html" class="dropdown-link page-link">Photos</a>
+            <a href="/pages/contexte.html" class="dropdown-link page-link">Pourquoi cette course ?</a>
+            <a href="/pages/inscription.html" class="dropdown-link page-link">S'inscrire</a>
+            <a href="/index.html" class="dropdown-link page-link">Le circuit</a>
+            <a href="/index.html" class="dropdown-link page-link">Les distances</a>
+            <a href="/pages/page2.html" class="dropdown-link page-link">After party</a>
+            <a href="/pages/page3.html" class="dropdown-link page-link">Bénévoles</a>
+            <a href="/pages/page4.html" class="dropdown-link page-link">Photos</a>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <main class="volunteers-container">
+      <section class="volunteers-section">
+        <div class="volunteers-content">
+          <h1 class="volunteers-title">Devenir bénévole</h1>
+          
+          <p class="volunteers-intro">Qui a dit qu'il fallait forcément enfiler des chaussures de running pour faire partie de la course ?</p>
+          
+          <p class="volunteers-text">Les bénévoles font aussi partis de la course. Sans eux, pas d'ambiance, pas de ravitaillement, pas de sourires au bord du chemin. Bref : pas de course.</p>
+          
+          <p class="volunteers-text">Leur rôle est simple et essentiel : accompagner les coureurs et les aider à aller au bout de leur défi, chacun à son niveau. Prêt·e à mettre l'ambiance et à donner de l'énergie ? 🔥</p>
+
+          <h2 class="volunteers-subtitle">La mission des bénévoles, si vous l'acceptez…</h2>
+          
+          <h3 class="volunteers-subheading">Donner de la force aux coureurs :</h3>
+          <ul class="volunteers-list">
+            <li>par la bonne humeur,</li>
+            <li>par les encouragements,</li>
+            <li>et très concrètement, en rechargeant les réserves de glycogène des troupes 🍊🍬</li>
+          </ul>
+
+          <h2 class="volunteers-subtitle">Deux façons de rejoindre l'aventure</h2>
+          
+          <div class="volunteers-methods">
+            <div class="method">
+              <h3 class="method-title">🚴 La team vélo</h3>
+              <p>À l'aise sur un vélo ? (coucou Amélie 👋)</p>
+              <p>Vous suivrez les coureurs sur le parcours — ou ferez du sur-place vu l'allure d'athlète annoncée — pour :</p>
+              <ul class="volunteers-list">
+                <li>distribuer de l'eau et de quoi manger,</li>
+                <li>assurer la sécurité,</li>
+                <li>veiller au bon déroulement de la course.</li>
+              </ul>
+            </div>
+
+            <div class="method">
+              <h3 class="method-title">🎶 La team ambiance & ravito</h3>
+              <p>À l'aise avec la sono ou simplement avec la bonne humeur contagieuse ?</p>
+              <p>Direction le stand ravitaillement pour :</p>
+              <ul class="volunteers-list">
+                <li>mettre l'ambiance,</li>
+                <li>motiver les troupes,</li>
+                <li>couper des oranges,</li>
+                <li>distribuer des sucreries en tout genre,</li>
+                <li>et offrir un vrai boost moral aux coureurs.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h2 class="volunteers-subtitle">Pourquoi devenir bénévole ?</h2>
+          
+          <p class="volunteers-text">Parce que vous faites partie de la course, même sans courir.</p>
+          <p class="volunteers-text">Parce que vous contribuez à créer une journée mémorable.</p>
+          <p class="volunteers-text">Et surtout, parce qu'ici, on ne court jamais vraiment seul.</p>
+
+          <div class="volunteers-cta">
+            <p class="volunteers-cta-text">👉 Envie de rejoindre la team bénévole ?</p>
+            <p class="volunteers-cta-text">Inscris-toi et fais partie de l'aventure</p>
+            <!-- REMPLACEZ "https://forms.gle/YOUR_FORM_ID" PAR LE LIEN DE VOTRE GOOGLE FORM -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCSirr5Oyj87jhtRtnDRHFM60-IdiHW1txoTjZoMyEZy4XaA/viewform" class="volunteers-button" target="_blank">S'inscrire comme bénévole</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -44,9 +108,12 @@
     </footer>
 
     <!-- Load Animation Modules -->
+    <script src="../lib/gsap.min.js"></script>
+    <script src="../lib/ScrollTrigger.min.js"></script>
+    <script src="../lib/SplitText.min.js"></script>
+
     <script src="../js/animations/preloader.js"></script>
     <script src="../js/animations/pageTransition.js"></script>
-    <script src="../js/animations/slider.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
   </body>

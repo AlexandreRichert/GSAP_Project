@@ -3,7 +3,6 @@ import { initParcours } from './pinAnimation.js'
 import { initCarousel } from './distanceCarousel.js'
 import { initHorizontalScroll } from './horizontalScroll.js'
 import { initCountdown } from './countDown.js'
-import { initDossardCarousel } from './dossardCarousel.js'
 
 barba.init({
   prefetchIgnore: true,
@@ -254,7 +253,6 @@ barba.hooks.afterEnter((data) => {
   initTextReveal(container)
   initParcours(container)
   initCarousel(container)
-  initDossardCarousel(container)
   initHorizontalScroll(container)
   initCountdown(container)
 

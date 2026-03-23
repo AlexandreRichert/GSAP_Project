@@ -1,0 +1,8 @@
+[
+  { "id": "design-1", "name": "Design Classique", "image": "/assets/dossard1.png", "description": "Style sobre et élégant" },
+  { "id": "design-2", "name": "Design Moderne", "image": "/assets/dossard2.png", "description": "Look contemporain" },
+  { "id": "design-3", "name": "Design Édition Limitée", "image": "/assets/dossard3.png", "description": "Collection spéciale" },
+  { "id": "design-4", "name": "Design Sport", "image": "/assets/dossard4.png", "description": "Pour les compétiteurs" },
+  { "id": "design-5", "name": "Design Fun", "image": "/assets/dossard5.png", "description": "Pour les bons vivants" },
+  { "id": "design-6", "name": "Design Premium", "image": "/assets/dossard6.png", "description": "Le must" }
+]

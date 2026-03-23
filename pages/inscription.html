@@ -35,56 +35,96 @@
         <a href="/pages/inscription.html" class="dropdown-link page-link">S'inscrire</a>
         <a href="/index.html" class="dropdown-link page-link">Le circuit</a>
         <a href="/index.html" class="dropdown-link page-link">Les distances</a>
+        <a href="/pages/page2.html" class="dropdown-link page-link">After party</a>
+        <a href="/pages/page3.html" class="dropdown-link page-link">Bénévoles</a>
+        <a href="/pages/page4.html" class="dropdown-link page-link">Photos</a>
       </div>
     </div>
 
     <div data-barba="wrapper">
       <main data-barba="container" data-barba-namespace="inscription">
-        <section id="register-app" class="page-container">
-          <section class="carousel-section">
-            <div class="carousel" aria-label="Carousel dossards">
-              <div class="carousel-left-panel">
-                <div class="panel-content-wrapper">
-                  <h3 class="slide-title-vertical">Dossard 1</h3>
-                  <p class="slide-sub-vertical">Couleur & design officiels</p>
-                </div>
+        <section id="register-app" class="page-container inscription-page">
+          <div class="inscription-header">
+            <h1 class="inscription-title">Choisis ton dossard</h1>
+            <p class="inscription-distance">Distance sélectionnée : <span id="selected-distance">5 km</span></p>
+          </div>
+          
+          <div class="dossards-grid">
+            <div class="dossard-card" data-id="design-1" data-name="Design Classique">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard1.png" alt="Design Classique" />
+                <div class="dossard-selected-badge">✓</div>
               </div>
-
-              <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-              <div class="carousel-viewport">
-                <ul class="carousel-track">
-                  <li class="carousel-item" data-title="Dossard 1" data-sub="Couleur & design officiels">
-                    <img src="../assets/dossard1.png" alt="Dossard 1" />
-                  </li>
-                  <li class="carousel-item" data-title="Dossard 2" data-sub="Numéro & sponsors">
-                    <img src="../assets/dossard2.png" alt="Dossard 2" />
-                  </li>
-                  <li class="carousel-item" data-title="Dossard 3" data-sub="Edition limitée">
-                    <img src="../assets/dossard3.png" alt="Dossard 3" />
-                  </li>
-                  <li class="carousel-item" data-title="Dossard 4" data-sub="Design finalisé">
-                    <img src="../assets/dossard4.png" alt="Dossard 4" />
-                  </li>
-                  <li class="carousel-item" data-title="Dossard 5" data-sub="Design finalisé">
-                    <img src="../assets/dossard5.png" alt="Dossard 5" />
-                  </li>
-                  <li class="carousel-item" data-title="Dossard 6" data-sub="Design finalisé">
-                    <img src="../assets/dossard6.png" alt="Dossard 6" />
-                  </li>
-                </ul>
-              </div>
-
-              <button class="carousel-btn next" aria-label="Suivant">›</button>
-
-              <div class="carousel-right-panel">
-                <div class="carousel-counter">
-                  <span class="counter-current">01</span>
-                  <span class="counter-separator">/</span>
-                  <span class="counter-total">06</span>
-                </div>
+              <div class="dossard-info">
+                <h3>Design Classique</h3>
+                <p>Style sobre et élégant</p>
               </div>
             </div>
-          </section>
+            
+            <div class="dossard-card" data-id="design-2" data-name="Design Moderne">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard2.png" alt="Design Moderne" />
+                <div class="dossard-selected-badge">✓</div>
+              </div>
+              <div class="dossard-info">
+                <h3>Design Moderne</h3>
+                <p>Look contemporain</p>
+              </div>
+            </div>
+            
+            <div class="dossard-card" data-id="design-3" data-name="Design Édition Limitée">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard3.png" alt="Design Édition Limitée" />
+                <div class="dossard-selected-badge">✓</div>
+              </div>
+              <div class="dossard-info">
+                <h3>Édition Limitée</h3>
+                <p>Collection spéciale</p>
+              </div>
+            </div>
+            
+            <div class="dossard-card" data-id="design-4" data-name="Design Sport">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard4.png" alt="Design Sport" />
+                <div class="dossard-selected-badge">✓</div>
+              </div>
+              <div class="dossard-info">
+                <h3>Design Sport</h3>
+                <p>Pour les compétiteurs</p>
+              </div>
+            </div>
+            
+            <div class="dossard-card" data-id="design-5" data-name="Design Fun">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard5.png" alt="Design Fun" />
+                <div class="dossard-selected-badge">✓</div>
+              </div>
+              <div class="dossard-info">
+                <h3>Design Fun</h3>
+                <p>Pour les bons vivants</p>
+              </div>
+            </div>
+            
+            <div class="dossard-card" data-id="design-6" data-name="Design Premium">
+              <div class="dossard-image-wrapper">
+                <img src="../assets/dossard6.png" alt="Design Premium" />
+                <div class="dossard-selected-badge">✓</div>
+              </div>
+              <div class="dossard-info">
+                <h3>Design Premium</h3>
+                <p>Le must</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="inscription-action">
+            <button id="choose-dossard-btn" class="btn-primary" disabled>
+              <span>Sélectionne un dossard</span>
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+            </button>
+          </div>
         </section>
       </main>
     </div>
@@ -98,6 +138,6 @@
     <script type="module" src="../js/animations/textReveal.js"></script>
     <script src="../js/animations/customCursor.js"></script>
     <script src="../js/main.js"></script>
-    <script type="module" src="../js/animations/dossardCarousel.js"></script>
+    <script src="../js/register.js"></script>
   </body>
 </html>

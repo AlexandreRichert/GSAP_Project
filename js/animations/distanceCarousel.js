@@ -33,6 +33,9 @@ function initCarouselInternal(root = document) {
     return
   }
 
+  // Ajouter l'overlay d'inscription sur chaque tuile
+  addInscriptionOverlays()
+
   addCarouselControls(carousel)
   addPauseIndicator(carousel)
   positionTiles()
@@ -99,6 +102,54 @@ function addPauseIndicator(carousel) {
   const indicator = document.createElement('div')
   indicator.className = 'carousel-pause-indicator'
   carousel.appendChild(indicator)
+}
+
+function addInscriptionOverlays() {
+  tiles.forEach((tile) => {
+    const distance = tile.dataset.distance
+
+    // Créer l'overlay
+    const overlay = document.createElement('div')
+    overlay.className = 'distance-inscription-overlay'
+    overlay.innerHTML = `
+      <span class="inscription-text">S'inscrire à cette distance</span>
+      <span class="inscription-arrow">→</span>
+    `
+    tile.appendChild(overlay)
+
+    // Hover events
+    tile.addEventListener('mouseenter', () => {
+      gsap.to(overlay, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.out',
+      })
+    })
+
+    tile.addEventListener('mouseleave', () => {
+      gsap.to(overlay, {
+        opacity: 0,
+        duration: 0.2,
+        ease: 'power2.in',
+      })
+    })
+
+    // Clic sur l'overlay pour s'inscrire
+    overlay.addEventListener('click', (e) => {
+      e.stopPropagation()
+      // Animation de sortie puis redirection
+      gsap.to(tile, {
+        scale: 0.95,
+        duration: 0.15,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          window.location.href = `/pages/inscription.html?distance=${encodeURIComponent(distance)}`
+        },
+      })
+    })
+  })
 }
 
 function getPositionFromAngle(angle) {

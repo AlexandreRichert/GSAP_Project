@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx http-server . -p 8080",
-    "start": "npx http-server . -p 8080"
+    "start": "node server.js",
+    "api": "node server.js"
   },
   "keywords": [
     "gsap",
@@ -15,9 +16,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gsap": "^3.14.2"
+    "gsap": "^3.14.2",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "concurrently": "^7.6.0"
   }
 }
