@@ -366,8 +366,10 @@ section {
 .hero-text h1 {
   font-size: 3.5rem;
   color: var(--text-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.1rem;
   font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .hero-text p {
@@ -384,8 +386,8 @@ section {
 .parcours-wrapper h2 {
   color: var(--light-color);
   text-align: center;
-  margin: 4rem 0;
-  padding: 0 2rem;
+  margin: 0 0 1.8rem;
+  padding: 7rem 2rem 0;
   font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -785,12 +787,13 @@ section {
 .partenaires-section h2 {
   font-size: 1.9rem;
   color: var(--light-color);
-  margin: 0;
+  margin: 3.25rem 0 0;
+  z-index: 2;
 }
 
 .partenaires-track {
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 0;
   transform: translateY(-50%);
   height: 450px;
@@ -803,6 +806,56 @@ section {
   z-index: 1;
   will-change: transform;
   padding-left: 100vw;
+}
+
+.construction-section {
+  min-height: calc(100vh - 180px);
+  width: min(1000px, 92vw);
+  margin: 6rem auto 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(8px);
+  padding: 3rem 2rem;
+  display: grid;
+  place-items: center;
+}
+
+.construction-content {
+  text-align: center;
+  max-width: 760px;
+}
+
+.construction-content h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--light-color);
+  margin-bottom: 0.9rem;
+}
+
+.construction-content p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.construction-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.construction-icon {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
 }
 
 .partner-card {
