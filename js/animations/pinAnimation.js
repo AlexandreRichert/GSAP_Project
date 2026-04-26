@@ -11,11 +11,19 @@ class ParcourAnimation {
     this.altitudeMarker = this.root.querySelector('.altitude-marker')
     this.altitudeMarkerLine = this.root.querySelector('.altitude-marker-line')
     this.altitudeLine = this.root.querySelector('.altitude-line')
+    this.altitudeFill = this.root.querySelector('.altitude-fill')
 
     this.section = this.root.querySelector('.parcours-section')
+    this.mapContainer = this.root.querySelector('.map-container')
+    this.altitudeContainer = this.root.querySelector('.altitude-container')
+    this.isMobile = window.innerWidth <= 480
 
     this.pathLength = 0
+    this.altitudeLineLength = 0
     this.animation = null
+    this.pathTrigger = null
+    this.altitudeTrigger = null
+    this.pathProgress = 0
 
     // Données réelles du parcours (6.36 km)
     this.distanceTotal = 6.36
@@ -57,6 +65,12 @@ class ParcourAnimation {
       strokeDashoffset: this.pathLength,
     })
 
+    if (this.isMobile) {
+      this.setupMobileAltitudeInitialState()
+      this.createMobileScrollAnimations()
+      return
+    }
+
     this.createScrollAnimation()
   }
 
@@ -86,6 +100,100 @@ class ParcourAnimation {
     )
 
     this.animation = timeline
+  }
+
+  setupMobileAltitudeInitialState() {
+    if (!this.altitudeLine) return
+    try {
+      this.altitudeLineLength = this.altitudeLine.getTotalLength()
+      gsap.set(this.altitudeLine, {
+        strokeDasharray: this.altitudeLineLength,
+        strokeDashoffset: this.altitudeLineLength,
+      })
+    } catch (e) {}
+
+    if (this.altitudeFill) {
+      gsap.set(this.altitudeFill, { opacity: 0 })
+    }
+    if (this.altitudeMarker) {
+      gsap.set(this.altitudeMarker, { autoAlpha: 0 })
+    }
+    if (this.altitudeMarkerLine) {
+      gsap.set(this.altitudeMarkerLine, { autoAlpha: 0 })
+    }
+  }
+
+  createMobileScrollAnimations() {
+    const pathTriggerTarget = this.mapContainer || this.section
+    const altitudeTriggerTarget = this.altitudeContainer || this.section
+
+    const pathTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: pathTriggerTarget,
+        start: 'top 75%',
+        end: 'bottom 35%',
+        scrub: 0.5,
+        markers: false,
+        onUpdate: (self) => {
+          this.pathProgress = self.progress
+          this.updatePinPosition(self.progress)
+          if (self.progress < 0.995) {
+            this.applyAltitudeProgress(0)
+          }
+        },
+      },
+    })
+
+    pathTimeline.to(
+      this.path,
+      {
+        strokeDashoffset: 0,
+        ease: 'none',
+        duration: 1,
+      },
+      0
+    )
+    this.animation = pathTimeline
+    this.pathTrigger = pathTimeline.scrollTrigger
+
+    this.altitudeTrigger = ScrollTrigger.create({
+      trigger: altitudeTriggerTarget,
+      start: 'top 80%',
+      end: 'bottom 35%',
+      scrub: 0.5,
+      markers: false,
+      onUpdate: (self) => {
+        if (this.pathProgress < 0.995) {
+          this.applyAltitudeProgress(0)
+          return
+        }
+        this.applyAltitudeProgress(self.progress)
+      },
+    })
+  }
+
+  applyAltitudeProgress(progress) {
+    const clamped = Math.max(0, Math.min(progress, 1))
+
+    if (this.altitudeLine && this.altitudeLineLength > 0) {
+      gsap.set(this.altitudeLine, {
+        strokeDashoffset: this.altitudeLineLength * (1 - clamped),
+      })
+    }
+
+    if (this.altitudeFill) {
+      gsap.set(this.altitudeFill, { opacity: clamped })
+    }
+
+    if (this.altitudeMarker) {
+      gsap.set(this.altitudeMarker, { autoAlpha: clamped > 0 ? 1 : 0 })
+    }
+
+    if (this.altitudeMarkerLine) {
+      gsap.set(this.altitudeMarkerLine, { autoAlpha: clamped > 0 ? 1 : 0 })
+    }
+
+    this.updateAltitudeMarker(clamped)
   }
 
   updatePinPosition(progress) {
@@ -172,6 +280,8 @@ class ParcourAnimation {
 
   destroy() {
     if (this.animation) this.animation.kill()
+    if (this.pathTrigger) this.pathTrigger.kill()
+    if (this.altitudeTrigger) this.altitudeTrigger.kill()
   }
 }
 

@@ -1,11 +1,20 @@
 // js/animations/distanceCarousel.js
 'use strict'
-const CONFIG = {
-  autoRotateSpeed: 3,
-  radius: 350,
-  transitionDuration: 0.6,
-  pauseOnHover: true,
+
+// Adaptive configuration based on screen size
+function getConfig() {
+  const isMobile = window.innerWidth <= 480
+  const isTablet = window.innerWidth <= 768
+
+  return {
+    autoRotateSpeed: 3,
+    radius: isMobile ? 120 : isTablet ? 180 : 350,
+    transitionDuration: 0.6,
+    pauseOnHover: !isMobile, // Disable on mobile (touch devices)
+  }
 }
+
+const CONFIG = getConfig()
 
 let currentIndex = 0
 let tiles = []
@@ -105,6 +114,8 @@ function addPauseIndicator(carousel) {
 }
 
 function addInscriptionOverlays() {
+  const isMobile = window.innerWidth <= 768
+  
   tiles.forEach((tile) => {
     const distance = tile.dataset.distance
 
@@ -117,22 +128,27 @@ function addInscriptionOverlays() {
     `
     tile.appendChild(overlay)
 
-    // Hover events
-    tile.addEventListener('mouseenter', () => {
-      gsap.to(overlay, {
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power2.out',
+    // Desktop: Hover events
+    if (!isMobile) {
+      tile.addEventListener('mouseenter', () => {
+        gsap.to(overlay, {
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
       })
-    })
 
-    tile.addEventListener('mouseleave', () => {
-      gsap.to(overlay, {
-        opacity: 0,
-        duration: 0.2,
-        ease: 'power2.in',
+      tile.addEventListener('mouseleave', () => {
+        gsap.to(overlay, {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power2.in',
+        })
       })
-    })
+    } else {
+      // Mobile: Show overlay permanently (via CSS media query)
+      overlay.style.opacity = '1'
+    }
 
     // Clic sur l'overlay pour s'inscrire
     overlay.addEventListener('click', (e) => {
@@ -258,6 +274,10 @@ function handleMouseLeave() {
 }
 
 function handleResize() {
+  // Recalculate CONFIG based on new screen size
+  const newConfig = getConfig()
+  Object.assign(CONFIG, newConfig)
+  
   positionTiles()
   updateActiveTile()
 }

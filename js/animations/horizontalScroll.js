@@ -8,11 +8,13 @@ class HorizontalCards {
     this.cards = []
 
     this.maxX = 0
+    this.maxY = 0
 
     this.cardStates = new Map()
     this.logoAnimations = []
 
     this.scrollTrigger = null
+    this.isMobile = window.innerWidth <= 768
 
     this.init()
   }
@@ -25,7 +27,12 @@ class HorizontalCards {
 
     this.setupInitialStates()
     this.setupCardHover()
-    this.createHorizontalScrollAnimation()
+    
+    if (this.isMobile) {
+      this.createVerticalScrollAnimation()
+    } else {
+      this.createHorizontalScrollAnimation()
+    }
   }
 
   /**
@@ -79,11 +86,18 @@ class HorizontalCards {
   calculateDimensions() {
     if (!this.cardsStack) return
 
-    const stackWidth = this.cardsStack.scrollWidth || this.cardsStack.offsetWidth
-    this.maxX = Math.max(0, stackWidth - window.innerWidth * 0.25)
+    if (this.isMobile) {
+      // Mobile: calcul vertical
+      const stackHeight = this.cardsStack.scrollHeight || this.cardsStack.offsetHeight
+      this.maxY = Math.max(0, stackHeight - window.innerHeight * 0.25)
+    } else {
+      // Desktop: calcul horizontal
+      const stackWidth = this.cardsStack.scrollWidth || this.cardsStack.offsetWidth
+      this.maxX = Math.max(0, stackWidth - window.innerWidth * 0.25)
 
-    const screensOfContent = this.maxX / window.innerWidth
-    this.pinDuration = `+=${Math.max(1600, screensOfContent * 1600)}vh`
+      const screensOfContent = this.maxX / window.innerWidth
+      this.pinDuration = `+=${Math.max(1600, screensOfContent * 1600)}vh`
+    }
   }
 
   createHorizontalScrollAnimation() {
@@ -139,6 +153,53 @@ class HorizontalCards {
           y: '100%',
           opacity: 0,
           duration: 0.6,
+          ease: 'power2.in',
+        })
+        state.revealed = false
+      }
+    })
+  }
+
+  createVerticalScrollAnimation() {
+    if (!this.container || !this.cardsStack || !this.cards.length) return
+
+    // Pour mobile: animation au scroll normal (pas de pin)
+    this.scrollTrigger = ScrollTrigger.create({
+      trigger: this.container,
+      start: 'top center',
+      end: `bottom center`,
+      onUpdate: (self) => this.handleLogoRevealVertical(self),
+    })
+  }
+
+  handleLogoRevealVertical(self) {
+    const viewportCenter = window.innerHeight / 2
+    const revealThreshold = 100 // pixels depuis le centre
+
+    this.cards.forEach((card) => {
+      const state = this.cardStates.get(card)
+      if (!state) return
+
+      const rect = card.getBoundingClientRect()
+      const { img, revealed } = state
+      const cardCenter = rect.top + rect.height / 2
+
+      // Carte visible si elle est proche du centre de la vue
+      const isVisibleZone = Math.abs(cardCenter - viewportCenter) < viewportCenter
+
+      if (isVisibleZone && !revealed) {
+        gsap.to(img, {
+          y: '0%',
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+        })
+        state.revealed = true
+      } else if (!isVisibleZone && revealed) {
+        gsap.to(img, {
+          y: '100%',
+          opacity: 0,
+          duration: 0.3,
           ease: 'power2.in',
         })
         state.revealed = false
