@@ -49,6 +49,15 @@
     await loadDossardCatalog()
     displaySelectedInfo()
 
+    const warnLink = document.getElementById('registration-warning-link')
+    if (warnLink) {
+      warnLink.href = `inscription.html?distance=${encodeURIComponent(currentDistance)}`
+    }
+    if (!currentDossardId || !String(currentDossardId).trim()) {
+      const banner = document.getElementById('registration-warning')
+      if (banner) banner.hidden = false
+    }
+
     // Setup form
     setupForm()
 
@@ -119,6 +128,13 @@
 
       if (!number || isNaN(number) || parseInt(number) < 1 || parseInt(number) > 9999) {
         showError(numberInput, 'Le numéro doit être entre 1 et 9999')
+        return
+      }
+
+      if (!currentDossardId || !String(currentDossardId).trim()) {
+        alert(
+          'Dossard non sélectionné. Reviens à l’étape « Choisis ton dossard » : menu ou lien inscription avec ta distance (ex. depuis la page des distances).'
+        )
         return
       }
 

@@ -2629,6 +2629,26 @@ body.page-contexte .content p {
   margin-bottom: 1rem;
 }
 
+.registration-warning {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--light-color);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.registration-warning a {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
 .registration-info {
   color: var(--light-color);
   opacity: 0.9;

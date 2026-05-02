@@ -16,12 +16,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gsap": "^3.14.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "gsap": "^3.14.2",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "http-server": "^14.1.1"
   }
 }
