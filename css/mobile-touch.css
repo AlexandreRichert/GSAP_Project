@@ -284,65 +284,6 @@
     right: 10px;
   }
 
-  /* ===== PARTENAIRES SECTION ===== */
-  .partenaires-section {
-    height: auto;
-    min-height: 600px;
-    padding: 2rem 1rem;
-    gap: 1.5rem;
-  }
-
-  .partenaires-section h2 {
-    font-size: 1.5rem;
-  }
-
-  .partenaires-track {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 0;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: visible;
-  }
-
-  .partner-card {
-    min-width: unset;
-    width: 100%;
-    max-width: 280px;
-    height: 140px;
-    transform: none !important;
-    margin: 0;
-    flex: 0 0 auto;
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-  }
-
-  .partner-card:nth-child(odd) {
-    transform: translateX(-15px) !important;
-  }
-
-  .partner-card:nth-child(even) {
-    transform: translateX(15px) !important;
-  }
-
-  .partner-card:hover {
-    transform: translateX(0) scale(1.02) !important;
-  }
-
-  .partner-card img {
-    max-height: 70%;
-    transform: translateY(100%) !important;
-    opacity: 0 !important;
-    transition: transform 0.6s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.4s ease;
-  }
-
   /* ===== COUNTDOWN SECTION ===== */
   .countdown-section {
     padding: 3rem 1rem;
@@ -409,6 +350,74 @@
   }
 }
 
+/* Partenaires ≤768px : colonne + scroll vertical / animations GSAP (horizontalScroll.js) */
+@media (max-width: 768px) {
+  .partenaires-section {
+    height: auto;
+    min-height: auto;
+    padding: 2rem 1rem 3rem;
+    gap: 1.5rem;
+    overflow-x: hidden;
+  }
+
+  .partenaires-section h2 {
+    font-size: clamp(1.35rem, 4.2vw, 1.55rem);
+    margin-top: 1rem;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .partenaires-track {
+    position: relative;
+    top: auto;
+    left: auto;
+    /* Annule le translateY(-50%) du desktop, sinon la pile remonte sur le h2 */
+    transform: none;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 0;
+    padding-left: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+    will-change: auto;
+    z-index: 0;
+  }
+
+  .partner-card {
+    min-width: unset;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+    flex: 0 0 auto;
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  .partner-card:nth-child(odd),
+  .partner-card:nth-child(even) {
+    transform: none;
+  }
+
+  .partner-card:hover {
+    box-shadow: 0 18px 44px rgba(2, 6, 23, 0.38);
+  }
+
+  .partner-card img {
+    max-height: 70%;
+    transform: none;
+    opacity: 1;
+  }
+}
+
 /* ============================================
    TABLET ADJUSTMENTS (481px - 768px)
    ============================================ */
@@ -446,11 +455,6 @@
 
   .distance-label {
     font-size: 2rem !important;
-  }
-
-  .partenaires-track {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
   }
 
   .countdown-title {
@@ -503,9 +507,9 @@
     transform: scale(0.95) !important;
   }
 
-  /* Partner cards touch */
+  /* Partner cards touch — éviter d'écraser le transform GSAP */
   .partner-card:active {
-    transform: scale(0.98) !important;
+    filter: brightness(0.92);
   }
 
   /* Increase touch targets */

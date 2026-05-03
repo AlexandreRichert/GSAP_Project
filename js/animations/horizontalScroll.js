@@ -1,4 +1,6 @@
 // js/animations/horizontalScroll.js
+const MOBILE_BREAKPOINT_MQ = '(max-width: 768px)'
+
 class HorizontalCards {
   constructor(root = document) {
     this.root = root
@@ -14,7 +16,14 @@ class HorizontalCards {
     this.logoAnimations = []
 
     this.scrollTrigger = null
-    this.isMobile = window.innerWidth <= 768
+    this.mobileScrollTweens = []
+    this.mobileQuery = typeof window !== 'undefined' ? window.matchMedia(MOBILE_BREAKPOINT_MQ) : null
+    this.isMobile = this.mobileQuery ? this.mobileQuery.matches : false
+    this._onMobileBreakpointChange = () => this.rebuildForBreakpoint()
+
+    if (this.mobileQuery) {
+      this.mobileQuery.addEventListener('change', this._onMobileBreakpointChange)
+    }
 
     this.init()
   }
@@ -27,12 +36,45 @@ class HorizontalCards {
 
     this.setupInitialStates()
     this.setupCardHover()
-    
+
     if (this.isMobile) {
-      this.createVerticalScrollAnimation()
+      this.setupMobileAlternatingScroll()
     } else {
       this.createHorizontalScrollAnimation()
     }
+  }
+
+  rebuildForBreakpoint() {
+    const nextMobile = this.mobileQuery ? this.mobileQuery.matches : false
+    if (nextMobile === this.isMobile) return
+
+    if (this.scrollTrigger) {
+      this.scrollTrigger.kill()
+      this.scrollTrigger = null
+    }
+
+    this.mobileScrollTweens.forEach((t) => t.kill())
+    this.mobileScrollTweens = []
+
+    if (this.cardsStack) gsap.set(this.cardsStack, { clearProps: 'transform' })
+
+    this.cards.forEach((card) => {
+      gsap.set(card, { clearProps: 'transform,opacity' })
+      const img = card.querySelector('img')
+      if (img) gsap.set(img, { clearProps: 'transform,opacity' })
+    })
+
+    this.cardStates.clear()
+    this.isMobile = nextMobile
+    this.setupInitialStates()
+
+    if (this.isMobile) {
+      this.setupMobileAlternatingScroll()
+    } else {
+      this.createHorizontalScrollAnimation()
+    }
+
+    ScrollTrigger.refresh()
   }
 
   /**
@@ -51,6 +93,17 @@ class HorizontalCards {
 
   setupInitialStates() {
     if (!this.cards.length) return
+
+    if (this.isMobile) {
+      this.cards.forEach((card) => {
+        const img = card.querySelector('img')
+        if (img) {
+          gsap.set(img, { y: '0%', opacity: 1 })
+          this.cardStates.set(card, { revealed: true, img })
+        }
+      })
+      return
+    }
 
     this.cards.forEach((card) => {
       const img = card.querySelector('img')
@@ -105,8 +158,6 @@ class HorizontalCards {
 
     this.calculateDimensions()
 
-    ScrollTrigger.addEventListener('refreshInit', () => this.calculateDimensions())
-
     this.scrollTrigger = ScrollTrigger.create({
       trigger: this.container,
       start: 'top top',
@@ -116,6 +167,12 @@ class HorizontalCards {
       scrub: 1,
       onUpdate: (self) => this.handleScrollUpdate(self),
     })
+
+    if (!this._horizontalRefreshInitAttached) {
+      this._boundHorizontalRefreshInit = () => this.calculateDimensions()
+      ScrollTrigger.addEventListener('refreshInit', this._boundHorizontalRefreshInit)
+      this._horizontalRefreshInitAttached = true
+    }
   }
 
   handleScrollUpdate(self) {
@@ -160,50 +217,41 @@ class HorizontalCards {
     })
   }
 
-  createVerticalScrollAnimation() {
+  /**
+   * Mobile : scroll vertical natif, cartes empilées, entrée alternée gauche / droite au scroll.
+   */
+  setupMobileAlternatingScroll() {
+    if (this._horizontalRefreshInitAttached && this._boundHorizontalRefreshInit) {
+      ScrollTrigger.removeEventListener('refreshInit', this._boundHorizontalRefreshInit)
+      this._horizontalRefreshInitAttached = false
+    }
+
     if (!this.container || !this.cardsStack || !this.cards.length) return
 
-    // Pour mobile: animation au scroll normal (pas de pin)
-    this.scrollTrigger = ScrollTrigger.create({
-      trigger: this.container,
-      start: 'top center',
-      end: `bottom center`,
-      onUpdate: (self) => this.handleLogoRevealVertical(self),
-    })
-  }
+    const slideAmount = () => Math.min(window.innerWidth * 0.45, 240)
 
-  handleLogoRevealVertical(self) {
-    const viewportCenter = window.innerHeight / 2
-    const revealThreshold = 100 // pixels depuis le centre
-
-    this.cards.forEach((card) => {
-      const state = this.cardStates.get(card)
-      if (!state) return
-
-      const rect = card.getBoundingClientRect()
-      const { img, revealed } = state
-      const cardCenter = rect.top + rect.height / 2
-
-      // Carte visible si elle est proche du centre de la vue
-      const isVisibleZone = Math.abs(cardCenter - viewportCenter) < viewportCenter
-
-      if (isVisibleZone && !revealed) {
-        gsap.to(img, {
-          y: '0%',
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power2.out',
-        })
-        state.revealed = true
-      } else if (!isVisibleZone && revealed) {
-        gsap.to(img, {
-          y: '100%',
+    this.cards.forEach((card, index) => {
+      const fromLeft = index % 2 === 0
+      const tween = gsap.fromTo(
+        card,
+        {
+          x: () => (fromLeft ? -slideAmount() : slideAmount()),
           opacity: 0,
-          duration: 0.3,
-          ease: 'power2.in',
-        })
-        state.revealed = false
-      }
+        },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 92%',
+            end: 'top 56%',
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+      this.mobileScrollTweens.push(tween)
     })
   }
 
@@ -216,10 +264,22 @@ class HorizontalCards {
   }
 
   destroy() {
+    if (this._horizontalRefreshInitAttached && this._boundHorizontalRefreshInit) {
+      ScrollTrigger.removeEventListener('refreshInit', this._boundHorizontalRefreshInit)
+      this._horizontalRefreshInitAttached = false
+    }
+
+    if (this.mobileQuery) {
+      this.mobileQuery.removeEventListener('change', this._onMobileBreakpointChange)
+    }
+
     if (this.scrollTrigger) {
       this.scrollTrigger.kill()
       this.scrollTrigger = null
     }
+
+    this.mobileScrollTweens.forEach((t) => t.kill())
+    this.mobileScrollTweens = []
 
     this.logoAnimations.forEach((animation) => {
       if (animation) animation.kill()
@@ -231,6 +291,7 @@ class HorizontalCards {
     }
 
     this.cards.forEach((card) => {
+      gsap.set(card, { clearProps: 'all' })
       const img = card.querySelector('img')
       if (img) gsap.set(img, { clearProps: 'all' })
     })
